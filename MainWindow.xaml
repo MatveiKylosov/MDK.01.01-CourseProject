@@ -6,7 +6,22 @@
         xmlns:local="clr-namespace:MDK._01._01_CourseProject"
         mc:Ignorable="d"
         Title="Автосалон" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="#F0F0F0">
+        <Grid Height="50" VerticalAlignment="Top" Background="White">
+            <Grid.Effect>
+                <DropShadowEffect Opacity="0.1"/>
+            </Grid.Effect>
+            <Label Content="Таблица" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18"/>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Марки" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
+                <Button Content="Машины" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
+                <Button Content="Продажи" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
+                <Button Content="Клиенты" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
+                <Button Content="Сотрудники" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
+            </StackPanel>
+        </Grid>
+
+        <Frame x:Name="Frame" NavigationUIVisibility="Hidden" Margin="0,55,0,0"/>
     </Grid>
 </Window>

@@ -23,6 +23,10 @@ namespace MDK._01._01_CourseProject
         public MainWindow()
         {
             InitializeComponent();
+            Repository.RepositoryBrand.GetBrands();
+            Repository.RepositoryCar.GetCars();
+            Repository.RepositoryCarSale.GetCarSales();
+            Repository.RepositoryEmployee.GetEmployees();
         }
     }
 }
