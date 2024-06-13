@@ -22,11 +22,11 @@ namespace MDK._01._01_CourseProject.Repository
                         {
                             brands.Add(new Brand
                             {
-                                BrandID         = reader.GetInt32("BrandID"),
-                                BrandName       = reader.IsDBNull(1) ? string.Empty : reader.GetString("BrandName"),
-                                Country         = reader.IsDBNull(2) ? string.Empty : reader.GetString("Country"),
-                                Manufacturer    = reader.IsDBNull(3) ? string.Empty : reader.GetString("Manufacturer"),
-                                Address         = reader.IsDBNull(4) ? string.Empty : reader.GetString("Address")
+                                BrandID = reader.GetInt32("BrandID"),
+                                BrandName = reader.IsDBNull(1) ? string.Empty : reader.GetString("BrandName"),
+                                Country = reader.IsDBNull(2) ? string.Empty : reader.GetString("Country"),
+                                Manufacturer = reader.IsDBNull(3) ? string.Empty : reader.GetString("Manufacturer"),
+                                Address = reader.IsDBNull(4) ? string.Empty : reader.GetString("Address")
                             });
                         }
                     }
@@ -70,13 +70,59 @@ namespace MDK._01._01_CourseProject.Repository
             }
         }
 
-        static public void DeleteBrand(int brandID)
+        static public void DeleteAllEntries(Brand brand)
         {
             using (var connection = new MySqlConnection(Config.connectionString))
             {
+                int brandID = brand.BrandID;
                 connection.Open();
-                string query = "DELETE FROM Brands WHERE BrandID=@BrandID";
-                using (var cmd = new MySqlCommand(query, connection))
+
+                string deleteCarSalesQuery = "DELETE FROM CarSales WHERE CarID IN (SELECT CarID FROM Cars WHERE BrandID=@BrandID)";
+                using (var cmd = new MySqlCommand(deleteCarSalesQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@BrandID", brandID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                string deleteCarsQuery = "DELETE FROM Cars WHERE BrandID=@BrandID";
+                using (var cmd = new MySqlCommand(deleteCarsQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@BrandID", brandID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                string deleteBrandQuery = "DELETE FROM Brands WHERE BrandID=@BrandID";
+                using (var cmd = new MySqlCommand(deleteBrandQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@BrandID", brandID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        static public void DeleteBrand(Brand brand)
+        {
+            using (var connection = new MySqlConnection(Config.connectionString))
+            {
+                int brandID = brand.BrandID;
+                connection.Open();
+
+                string updateCarSalesQuery = "UPDATE CarSales SET BrandID=NULL WHERE CarID IN (SELECT CarID FROM Cars WHERE BrandID=@BrandID)";
+                using (var cmd = new MySqlCommand(updateCarSalesQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@BrandID", brandID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                string updateCarsQuery = "UPDATE Cars SET BrandID=NULL WHERE BrandID=@BrandID";
+                using (var cmd = new MySqlCommand(updateCarsQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@BrandID", brandID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                string deleteBrandQuery = "DELETE FROM Brands WHERE BrandID=@BrandID";
+                using (var cmd = new MySqlCommand(deleteBrandQuery, connection))
                 {
                     cmd.Parameters.AddWithValue("@BrandID", brandID);
                     cmd.ExecuteNonQuery();

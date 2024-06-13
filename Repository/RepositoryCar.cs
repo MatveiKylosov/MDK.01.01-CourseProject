@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using MDK._01._01_CourseProject.SQL;
+
 namespace MDK._01._01_CourseProject.Repository
 {
     static public class RepositoryCar
@@ -21,7 +22,7 @@ namespace MDK._01._01_CourseProject.Repository
                         {
                             cars.Add(new Car
                             {
-                                CarID =  reader.GetInt32("CarID"),
+                                CarID = reader.GetInt32("CarID"),
                                 CarName = reader.IsDBNull(reader.GetOrdinal("CarName")) ? null : reader.GetString("CarName"),
                                 BrandID = reader.IsDBNull(reader.GetOrdinal("BrandID")) ? (int?)null : reader.GetInt32("BrandID"),
                                 YearOfProduction = reader.IsDBNull(reader.GetOrdinal("YearOfProduction")) ? (int?)null : reader.GetInt32("YearOfProduction"),
@@ -80,8 +81,16 @@ namespace MDK._01._01_CourseProject.Repository
             using (var connection = new MySqlConnection(Config.connectionString))
             {
                 connection.Open();
-                string query = "DELETE FROM Cars WHERE CarID=@CarID";
-                using (var cmd = new MySqlCommand(query, connection))
+
+                string deleteCarSalesQuery = "DELETE FROM CarSales WHERE CarID=@CarID";
+                using (var cmd = new MySqlCommand(deleteCarSalesQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@CarID", carID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                string deleteCarQuery = "DELETE FROM Cars WHERE CarID=@CarID";
+                using (var cmd = new MySqlCommand(deleteCarQuery, connection))
                 {
                     cmd.Parameters.AddWithValue("@CarID", carID);
                     cmd.ExecuteNonQuery();

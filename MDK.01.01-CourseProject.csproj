@@ -108,10 +108,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Repository\RepositoryCarSale.cs" />
+    <Compile Include="Repository\RepositoryCustomer.cs" />
     <Compile Include="SQL\Config.cs" />
     <Compile Include="Repository\RepositoryEmployee.cs" />
     <Compile Include="Repository\RepositoryBrand.cs" />
     <Compile Include="Repository\RepositoryCar.cs" />
+    <Compile Include="Views\Brands\BrandUserControl.xaml.cs">
+      <DependentUpon>BrandUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Brands\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -124,6 +131,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Brands\BrandUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Brands\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Brand.cs" />
@@ -157,8 +172,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

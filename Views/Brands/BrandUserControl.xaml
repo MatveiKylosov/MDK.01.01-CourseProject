@@ -1,0 +1,256 @@
+﻿<UserControl x:Class="MDK._01._01_CourseProject.Views.Brands.BrandUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.Brands"
+             mc:Ignorable="d">
+    <Grid Background="#02343F">
+        <Image Grid.Row="0" Grid.Column="0" Source="/Images/brand.png" Width="40px" Height="40px" Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+        <Grid Margin="40, 0, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Margin="10" Height="60" VerticalAlignment="Top" Background="#F0EDCC">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.1"/>
+                </Grid.Effect>
+
+                <Label Content="Название бренда:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <TextBox x:Name="BrandName" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0" IsEnabled="{Binding IsEnable}"/>
+            </Grid>
+
+            <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.1"/>
+                </Grid.Effect>
+
+                <Label Content="Страна бренда:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <ComboBox x:Name="Country"
+          SelectedValuePath="Content"
+          Background="#02343F" Foreground="Black" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0">
+                    <ComboBoxItem Content="Афганистан"/>
+                    <ComboBoxItem Content="Албания"/>
+                    <ComboBoxItem Content="Алжир"/>
+                    <ComboBoxItem Content="Андорра"/>
+                    <ComboBoxItem Content="Ангола"/>
+                    <ComboBoxItem Content="Антигуа и Барбуда"/>
+                    <ComboBoxItem Content="Аргентина"/>
+                    <ComboBoxItem Content="Армения"/>
+                    <ComboBoxItem Content="Австралия"/>
+                    <ComboBoxItem Content="Австрия"/>
+                    <ComboBoxItem Content="Азербайджан"/>
+                    <ComboBoxItem Content="Багамы"/>
+                    <ComboBoxItem Content="Бахрейн"/>
+                    <ComboBoxItem Content="Бангладеш"/>
+                    <ComboBoxItem Content="Барбадос"/>
+                    <ComboBoxItem Content="Беларусь"/>
+                    <ComboBoxItem Content="Бельгия"/>
+                    <ComboBoxItem Content="Белиз"/>
+                    <ComboBoxItem Content="Бенин"/>
+                    <ComboBoxItem Content="Бутан"/>
+                    <ComboBoxItem Content="Боливия"/>
+                    <ComboBoxItem Content="Босния и Герцеговина"/>
+                    <ComboBoxItem Content="Ботсвана"/>
+                    <ComboBoxItem Content="Бразилия"/>
+                    <ComboBoxItem Content="Бруней"/>
+                    <ComboBoxItem Content="Болгария"/>
+                    <ComboBoxItem Content="Буркина-Фасо"/>
+                    <ComboBoxItem Content="Бурунди"/>
+                    <ComboBoxItem Content="Камбоджа"/>
+                    <ComboBoxItem Content="Камерун"/>
+                    <ComboBoxItem Content="Канада"/>
+                    <ComboBoxItem Content="Кабо-Верде"/>
+                    <ComboBoxItem Content="Центральноафриканская Республика"/>
+                    <ComboBoxItem Content="Чад"/>
+                    <ComboBoxItem Content="Чили"/>
+                    <ComboBoxItem Content="Китай"/>
+                    <ComboBoxItem Content="Колумбия"/>
+                    <ComboBoxItem Content="Коморы"/>
+                    <ComboBoxItem Content="Конго"/>
+                    <ComboBoxItem Content="Коста-Рика"/>
+                    <ComboBoxItem Content="Хорватия"/>
+                    <ComboBoxItem Content="Куба"/>
+                    <ComboBoxItem Content="Кипр"/>
+                    <ComboBoxItem Content="Чехия"/>
+                    <ComboBoxItem Content="Дания"/>
+                    <ComboBoxItem Content="Джибути"/>
+                    <ComboBoxItem Content="Доминика"/>
+                    <ComboBoxItem Content="Доминиканская Республика"/>
+                    <ComboBoxItem Content="Восточный Тимор"/>
+                    <ComboBoxItem Content="Эквадор"/>
+                    <ComboBoxItem Content="Египет"/>
+                    <ComboBoxItem Content="Сальвадор"/>
+                    <ComboBoxItem Content="Экваториальная Гвинея"/>
+                    <ComboBoxItem Content="Эритрея"/>
+                    <ComboBoxItem Content="Эстония"/>
+                    <ComboBoxItem Content="Эфиопия"/>
+                    <ComboBoxItem Content="Фиджи"/>
+                    <ComboBoxItem Content="Финляндия"/>
+                    <ComboBoxItem Content="Франция"/>
+                    <ComboBoxItem Content="Габон"/>
+                    <ComboBoxItem Content="Гамбия"/>
+                    <ComboBoxItem Content="Грузия"/>
+                    <ComboBoxItem Content="Германия"/>
+                    <ComboBoxItem Content="Гана"/>
+                    <ComboBoxItem Content="Греция"/>
+                    <ComboBoxItem Content="Гренада"/>
+                    <ComboBoxItem Content="Гватемала"/>
+                    <ComboBoxItem Content="Гвинея"/>
+                    <ComboBoxItem Content="Гвинея-Бисау"/>
+                    <ComboBoxItem Content="Гайана"/>
+                    <ComboBoxItem Content="Гаити"/>
+                    <ComboBoxItem Content="Гондурас"/>
+                    <ComboBoxItem Content="Венгрия"/>
+                    <ComboBoxItem Content="Исландия"/>
+                    <ComboBoxItem Content="Индия"/>
+                    <ComboBoxItem Content="Индонезия"/>
+                    <ComboBoxItem Content="Иран"/>
+                    <ComboBoxItem Content="Ирак"/>
+                    <ComboBoxItem Content="Ирландия"/>
+                    <ComboBoxItem Content="Израиль"/>
+                    <ComboBoxItem Content="Италия"/>
+                    <ComboBoxItem Content="Кот-д’Ивуар"/>
+                    <ComboBoxItem Content="Ямайка"/>
+                    <ComboBoxItem Content="Япония"/>
+                    <ComboBoxItem Content="Иордания"/>
+                    <ComboBoxItem Content="Казахстан"/>
+                    <ComboBoxItem Content="Кения"/>
+                    <ComboBoxItem Content="Кирибати"/>
+                    <ComboBoxItem Content="Северная Корея"/>
+                    <ComboBoxItem Content="Южная Корея"/>
+                    <ComboBoxItem Content="Косово"/>
+                    <ComboBoxItem Content="Кувейт"/>
+                    <ComboBoxItem Content="Киргизия"/>
+                    <ComboBoxItem Content="Лаос"/>
+                    <ComboBoxItem Content="Латвия"/>
+                    <ComboBoxItem Content="Ливан"/>
+                    <ComboBoxItem Content="Лесото"/>
+                    <ComboBoxItem Content="Либерия"/>
+                    <ComboBoxItem Content="Ливия"/>
+                    <ComboBoxItem Content="Лихтенштейн"/>
+                    <ComboBoxItem Content="Литва"/>
+                    <ComboBoxItem Content="Люксембург"/>
+                    <ComboBoxItem Content="Македония"/>
+                    <ComboBoxItem Content="Мадагаскар"/>
+                    <ComboBoxItem Content="Малави"/>
+                    <ComboBoxItem Content="Малайзия"/>
+                    <ComboBoxItem Content="Мальдивы"/>
+                    <ComboBoxItem Content="Мали"/>
+                    <ComboBoxItem Content="Мальта"/>
+                    <ComboBoxItem Content="Маршалловы Острова"/>
+                    <ComboBoxItem Content="Мавритания"/>
+                    <ComboBoxItem Content="Маврикий"/>
+                    <ComboBoxItem Content="Мексика"/>
+                    <ComboBoxItem Content="Микронезия"/>
+                    <ComboBoxItem Content="Молдова"/>
+                    <ComboBoxItem Content="Монако"/>
+                    <ComboBoxItem Content="Монголия"/>
+                    <ComboBoxItem Content="Черногория"/>
+                    <ComboBoxItem Content="Марокко"/>
+                    <ComboBoxItem Content="Мозамбик"/>
+                    <ComboBoxItem Content="Мьянма"/>
+                    <ComboBoxItem Content="Намибия"/>
+                    <ComboBoxItem Content="Науру"/>
+                    <ComboBoxItem Content="Непал"/>
+                    <ComboBoxItem Content="Нидерланды"/>
+                    <ComboBoxItem Content="Новая Зеландия"/>
+                    <ComboBoxItem Content="Никарагуа"/>
+                    <ComboBoxItem Content="Нигер"/>
+                    <ComboBoxItem Content="Нигерия"/>
+                    <ComboBoxItem Content="Норвегия"/>
+                    <ComboBoxItem Content="Оман"/>
+                    <ComboBoxItem Content="Пакистан"/>
+                    <ComboBoxItem Content="Палау"/>
+                    <ComboBoxItem Content="Панама"/>
+                    <ComboBoxItem Content="Папуа-Новая Гвинея"/>
+                    <ComboBoxItem Content="Парагвай"/>
+                    <ComboBoxItem Content="Перу"/>
+                    <ComboBoxItem Content="Филиппины"/>
+                    <ComboBoxItem Content="Польша"/>
+                    <ComboBoxItem Content="Португалия"/>
+                    <ComboBoxItem Content="Катар"/>
+                    <ComboBoxItem Content="Румыния"/>
+                    <ComboBoxItem Content="Россия"/>
+                    <ComboBoxItem Content="Руанда"/>
+                    <ComboBoxItem Content="Сент-Китс и Невис"/>
+                    <ComboBoxItem Content="Сент-Люсия"/>
+                    <ComboBoxItem Content="Сент-Винсент и Гренадины"/>
+                    <ComboBoxItem Content="Самоа"/>
+                    <ComboBoxItem Content="Сан-Марино"/>
+                    <ComboBoxItem Content="Сан-Томе и Принсипи"/>
+                    <ComboBoxItem Content="Саудовская Аравия"/>
+                    <ComboBoxItem Content="Сенегал"/>
+                    <ComboBoxItem Content="Сербия"/>
+                    <ComboBoxItem Content="Сейшелы"/>
+                    <ComboBoxItem Content="Сьерра-Леоне"/>
+                    <ComboBoxItem Content="Сингапур"/>
+                    <ComboBoxItem Content="Словакия"/>
+                    <ComboBoxItem Content="Словения"/>
+                    <ComboBoxItem Content="Соломоновы Острова"/>
+                    <ComboBoxItem Content="Сомали"/>
+                    <ComboBoxItem Content="Южная Африка"/>
+                    <ComboBoxItem Content="Южный Судан"/>
+                    <ComboBoxItem Content="Испания"/>
+                    <ComboBoxItem Content="Шри-Ланка"/>
+                    <ComboBoxItem Content="Судан"/>
+                    <ComboBoxItem Content="Суринам"/>
+                    <ComboBoxItem Content="Эсватини"/>
+                    <ComboBoxItem Content="Швеция"/>
+                    <ComboBoxItem Content="Швейцария"/>
+                    <ComboBoxItem Content="Сирия"/>
+                    <ComboBoxItem Content="Тайвань"/>
+                    <ComboBoxItem Content="Таджикистан"/>
+                    <ComboBoxItem Content="Танзания"/>
+                    <ComboBoxItem Content="Таиланд"/>
+                    <ComboBoxItem Content="Того"/>
+                    <ComboBoxItem Content="Тонга"/>
+                    <ComboBoxItem Content="Тринидад и Тобаго"/>
+                    <ComboBoxItem Content="Тунис"/>
+                    <ComboBoxItem Content="Турция"/>
+                    <ComboBoxItem Content="Туркменистан"/>
+                    <ComboBoxItem Content="Тувалу"/>
+                    <ComboBoxItem Content="Уганда"/>
+                    <ComboBoxItem Content="Украина"/>
+                    <ComboBoxItem Content="Объединенные Арабские Эмираты"/>
+                    <ComboBoxItem Content="Великобритания"/>
+                    <ComboBoxItem Content="Соединенные Штаты Америки"/>
+                    <ComboBoxItem Content="Уругвай"/>
+                    <ComboBoxItem Content="Узбекистан"/>
+                    <ComboBoxItem Content="Вануату"/>
+                    <ComboBoxItem Content="Ватикан"/>
+                    <ComboBoxItem Content="Венесуэла"/>
+                    <ComboBoxItem Content="Вьетнам"/>
+                    <ComboBoxItem Content="Йемен"/>
+                    <ComboBoxItem Content="Замбия"/>
+                    <ComboBoxItem Content="Зимбабве"/>
+                </ComboBox>
+
+            </Grid>
+
+            <Grid Margin="10" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="1">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.1"/>
+                </Grid.Effect>
+
+                <Label Content="Завод:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <TextBox x:Name="Manufacturer" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0" IsEnabled="{Binding IsEnable}"/>
+            </Grid>
+
+            <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="1">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.1"/>
+                </Grid.Effect>
+
+                <Label Content="Адрес:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <TextBox x:Name="Address" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0" IsEnabled="{Binding IsEnable}"/>
+            </Grid>
+
+            <Button x:Name="DeleteButton" Content="Удалить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10, 145, 85, 10" Grid.Column="1" Click="DeleteButton_Click"/>
+            <Button x:Name="EditButton" Content="Изменить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 145, 10, 10" Grid.Column="1" Click="EditButton_Click"/>
+        </Grid>
+    </Grid>
+</UserControl>
