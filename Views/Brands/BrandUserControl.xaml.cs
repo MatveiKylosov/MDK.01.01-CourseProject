@@ -22,7 +22,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
     /// </summary>
     public partial class BrandUserControl : UserControl
     {
-        Brand brand;
+        public Brand brand;
         Main main;
         bool edit
         {
@@ -45,13 +45,16 @@ namespace MDK._01._01_CourseProject.Views.Brands
             InitializeComponent();
             this.brand = brand;
             this.main = main;
+            this.edit = false;
+
+            if (brand == null)
+                return;
 
             BrandName.Text = brand.BrandName;
             Address.Text = brand.Address;
             Manufacturer.Text = brand.Manufacturer;
             Country.SelectedValue = brand.Country;
 
-            edit = false;
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -94,7 +97,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
             brand.Manufacturer = this.Manufacturer.Text;
             brand.Country = this.Country.SelectedValue.ToString();
             brand.Address = this.Address.Text;
-
+            
             RepositoryBrand.UpdateBrand(brand);
             edit = false;
         }

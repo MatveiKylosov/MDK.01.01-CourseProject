@@ -15,12 +15,18 @@
                 <DropShadowEffect Opacity="0.5" BlurRadius="3" ShadowDepth="3"/>
             </Button.Effect>
         </Button>
-        <Button Content="Экспорт" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="90, 0, 10, 10">
+        <Button Content="Экспорт" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="90, 0, 10, 10" Click="ExportBrands_Click">
             <Button.Effect>
                 <DropShadowEffect Opacity="0.5" BlurRadius="3" ShadowDepth="3"/>
             </Button.Effect>
         </Button>
-        <Button Content="Добавить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 10, 10">
+
+        <Button Content="Обновить записи" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="110" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 90, 10" Click="Update_Click">
+            <Button.Effect>
+                <DropShadowEffect Opacity="0.5" BlurRadius="3" ShadowDepth="3"/>
+            </Button.Effect>
+        </Button>
+        <Button Content="Добавить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Click="AddBrand_Click">
             <Button.Effect>
                 <DropShadowEffect Opacity="0.5" BlurRadius="3" ShadowDepth="3"/>
             </Button.Effect>
