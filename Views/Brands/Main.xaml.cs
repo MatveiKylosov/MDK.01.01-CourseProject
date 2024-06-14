@@ -61,14 +61,12 @@ namespace MDK._01._01_CourseProject.Views.Brands
 
         private void AddBrand_Click(object sender, RoutedEventArgs e)
         {
-            var newBrand = new Brand();
-            RepositoryBrand.AddBrand(newBrand);
+            RepositoryBrand.AddBrand(new Brand());
             var addedBrand = RepositoryBrand.GetBrands().LastOrDefault();
             if (addedBrand != null)
             {
-                newBrand.BrandID = addedBrand.BrandID;
-                _brands.Add(newBrand);
-                Brands.Add(new BrandUserControl(newBrand, this));
+                _brands.Add(addedBrand);
+                Brands.Add(new BrandUserControl(addedBrand, this));
             }
         }
 
