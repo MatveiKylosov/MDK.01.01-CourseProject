@@ -9,15 +9,15 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace MDK._01._01_CourseProject.Views.Brands
 {
-    /// <summary>
-    /// Логика взаимодействия для Main.xaml
-    /// </summary>
     public partial class Main : Page
     {
+        private string _selectedCountry = "";
+        private string _selectedManufacturer = "";
+        private string _selectedAddress = "";
+        private bool _filterUse = false;
         private List<Brand> _brands;
         private ObservableCollection<BrandUserControl> Brands { get; set; }
 
@@ -26,23 +26,36 @@ namespace MDK._01._01_CourseProject.Views.Brands
             InitializeComponent();
             _brands = brands ?? new List<Brand>();
             Brands = new ObservableCollection<BrandUserControl>();
-
             InitializeBrands();
             BrandList.ItemsSource = Brands;
         }
 
-        private void InitializeBrands()
+        private void InitializeBrands(string selectedCountry = null, string selectedManufacturer = null, string selectedAddress = null)
         {
-            foreach (var brand in _brands)
+            var filteredBrands = _brands.Where(x =>
+            {
+                if (selectedCountry == null && selectedManufacturer == null && selectedAddress == null)
+                    return true;
+                if (selectedCountry != null && selectedCountry != x.Country)
+                    return false;
+                if (selectedManufacturer != null && selectedManufacturer != x.Manufacturer)
+                    return false;
+                if (selectedAddress != null && selectedAddress != x.Address)
+                    return false;
+                return true;
+            }).ToList();
+
+            Brands.Clear();
+            foreach (var brand in filteredBrands)
                 Brands.Add(new BrandUserControl(brand, this));
         }
 
-        public void RemoveBrand(BrandUserControl brand)
+        public void RemoveBrand(BrandUserControl brandControl)
         {
-            if (brand != null)
+            if (brandControl != null)
             {
-                Brands.Remove(brand);
-                _brands.Remove(brand.brand);
+                Brands.Remove(brandControl);
+                _brands.Remove(brandControl.brand);
             }
         }
 
@@ -50,8 +63,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
         {
             var newBrand = new Brand();
             RepositoryBrand.AddBrand(newBrand);
-
-            var addedBrand = Repository.RepositoryBrand.GetBrands().LastOrDefault();
+            var addedBrand = RepositoryBrand.GetBrands().LastOrDefault();
             if (addedBrand != null)
             {
                 newBrand.BrandID = addedBrand.BrandID;
@@ -62,16 +74,10 @@ namespace MDK._01._01_CourseProject.Views.Brands
 
         private void ExportBrands_Click(object sender, RoutedEventArgs e)
         {
-            var saveFileDialog = new SaveFileDialog
-            {
-                Filter = "Файлы Excel (*.xlsx)|*.xlsx",
-                Title = "Сохранить файл Excel"
-            };
-
+            var saveFileDialog = new SaveFileDialog { Filter = "Файлы Excel (*.xlsx)|*.xlsx", Title = "Сохранить файл Excel" };
             if (saveFileDialog.ShowDialog() == true)
             {
                 var filePath = saveFileDialog.FileName;
-
                 try
                 {
                     ExportToExcel(filePath);
@@ -89,15 +95,11 @@ namespace MDK._01._01_CourseProject.Views.Brands
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Бренды");
-
-                // Заголовки столбцов
                 var headers = new[] { "BrandID", "BrandName", "Country", "Manufacturer", "Address" };
                 for (int i = 0; i < headers.Length; i++)
                 {
                     worksheet.Cells[1, i + 1].Value = headers[i];
                 }
-
-                // Заполнение данными
                 for (int i = 0; i < _brands.Count; i++)
                 {
                     var brand = _brands[i];
@@ -107,17 +109,35 @@ namespace MDK._01._01_CourseProject.Views.Brands
                     worksheet.Cells[i + 2, 4].Value = brand.Manufacturer;
                     worksheet.Cells[i + 2, 5].Value = brand.Address;
                 }
-
-                // Сохранение в файл
                 package.SaveAs(new FileInfo(filePath));
             }
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            _brands = Repository.RepositoryBrand.GetBrands();
-            Brands.Clear();
+            _brands = RepositoryBrand.GetBrands();
             InitializeBrands();
+        }
+
+        private void FilterBrand_Click(object sender, RoutedEventArgs e)
+        {
+            var filter = new Filter();
+            var countries = _brands.Select(b => b.Country).Distinct().ToList();
+            var manufacturers = _brands.Select(b => b.Manufacturer).Distinct().ToList();
+            var addresses = _brands.Select(b => b.Address).Distinct().ToList();
+
+            _filterUse = filter.ShowDialog(_filterUse, countries, manufacturers, addresses, _selectedCountry, _selectedManufacturer, _selectedAddress);
+            if (_filterUse)
+            {
+                _selectedCountry = filter.SelectedCountry;
+                _selectedManufacturer = filter.SelectedManufacturer;
+                _selectedAddress = filter.SelectedAddress;
+                InitializeBrands(_selectedCountry, _selectedManufacturer, _selectedAddress);
+            }
+            else
+            {
+                InitializeBrands();
+            }
         }
     }
 }

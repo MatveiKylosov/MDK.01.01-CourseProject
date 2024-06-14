@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace MDK._01._01_CourseProject
         {
             InitializeComponent();
             Frame.Navigate(new Views.Brands.Main(Repository.RepositoryBrand.GetBrands()));
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         }
     }
 }

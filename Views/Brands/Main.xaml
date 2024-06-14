@@ -10,7 +10,7 @@
     <Grid>
         <ListView x:Name="BrandList" HorizontalContentAlignment="Stretch" Margin="0,0,0,45" Background="#F0EDCC"/>
         
-        <Button Content="Фильтр" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10, 0, 0, 10">
+        <Button Content="Фильтр" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10, 0, 0, 10" Click="FilterBrand_Click">
             <Button.Effect>
                 <DropShadowEffect Opacity="0.5" BlurRadius="3" ShadowDepth="3"/>
             </Button.Effect>

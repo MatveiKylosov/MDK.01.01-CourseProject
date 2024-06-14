@@ -172,6 +172,9 @@
     <Compile Include="Views\Brands\BrandUserControl.xaml.cs">
       <DependentUpon>BrandUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Brands\Filter.xaml.cs">
+      <DependentUpon>Filter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Brands\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
@@ -188,6 +191,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Brands\BrandUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Brands\Filter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
