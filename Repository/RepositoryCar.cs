@@ -103,15 +103,16 @@ namespace MDK._01._01_CourseProject.Repository
             }
         }
 
-        public static bool DeleteCar(int carID)
+        public static bool DeleteCar(Car car)
         {
             using (var connection = new MySqlConnection(Config.connectionString))
             {
                 try
                 {
+                    int carID = car.CarID;
                     connection.Open();
-                    string deleteCarSalesQuery = "DELETE FROM CarSales WHERE CarID=@CarID";
-                    using (var cmd = new MySqlCommand(deleteCarSalesQuery, connection))
+                    string updateCarSalesQuery = "UPDATE CarSales SET CarID=NULL WHERE CarID=@CarID";
+                    using (var cmd = new MySqlCommand(updateCarSalesQuery, connection))
                     {
                         cmd.Parameters.AddWithValue("@CarID", carID);
                         cmd.ExecuteNonQuery();
@@ -131,5 +132,38 @@ namespace MDK._01._01_CourseProject.Repository
                 }
             }
         }
+        public static bool DeleteAllEntries(Car car)
+        {
+            using (var connection = new MySqlConnection(Config.connectionString))
+            {
+                try
+                {
+                    int carID = car.CarID;
+                    connection.Open();
+
+                    string deleteCarSalesQuery = "DELETE FROM CarSales WHERE CarID=@CarID";
+                    using (var cmd = new MySqlCommand(deleteCarSalesQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@CarID", carID);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    string deleteCarQuery = "DELETE FROM Cars WHERE CarID=@CarID";
+                    using (var cmd = new MySqlCommand(deleteCarQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@CarID", carID);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при удалении автомобиля и связанных записей: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+        }
+
     }
 }

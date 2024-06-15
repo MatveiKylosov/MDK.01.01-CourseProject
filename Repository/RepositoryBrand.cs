@@ -168,6 +168,5 @@ namespace MDK._01._01_CourseProject.Repository
                 }
             }
         }
-
     }
 }

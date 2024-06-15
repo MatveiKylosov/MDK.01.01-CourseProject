@@ -34,13 +34,13 @@ namespace MDK._01._01_CourseProject.Views.Brands
         {
             var filteredBrands = _brands.Where(x =>
             {
-                if (selectedCountry == null && selectedManufacturer == null && selectedAddress == null)
+                if ((selectedCountry == null || selectedCountry == "Не выбран.") && (selectedManufacturer == null || selectedManufacturer == "Не выбран.") && (selectedManufacturer == null|| selectedCountry == "Не выбран."))
                     return true;
-                if (selectedCountry != null && selectedCountry != x.Country)
+                if (selectedCountry != "Не выбран." && selectedCountry != null && selectedCountry != x.Country)
                     return false;
-                if (selectedManufacturer != null && selectedManufacturer != x.Manufacturer)
+                if (selectedManufacturer != "Не выбран." && selectedManufacturer != null && selectedManufacturer != x.Manufacturer)
                     return false;
-                if (selectedAddress != null && selectedAddress != x.Address)
+                if (selectedAddress != "Не выбран." && selectedAddress != null && selectedAddress != x.Address)
                     return false;
                 return true;
             }).ToList();

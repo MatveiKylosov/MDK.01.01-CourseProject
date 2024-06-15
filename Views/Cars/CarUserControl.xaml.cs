@@ -121,17 +121,43 @@ namespace MDK._01._01_CourseProject.Views.Cars
 
             RepositoryCar.UpdateCar(Car);
             edit = false;
-            EditButton.Content = "Редактировать";
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Продолжить удаление этой записи?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
+            bool hasRelatedCars = Repository.RepositoryCarSale.GetCarSales().Any(x => x.CarID == Car.CarID);
+            MessageBoxResult result;
+
+            if (hasRelatedCars)
             {
-                RepositoryCar.DeleteCar(Car.CarID);
-                main.RemoveCar(this);
+                result = MessageBox.Show(
+                    "Данная запись участвует в других таблицах. Удалить эту запись вместе с другими?",
+                    "Внимание!",
+                    MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                    Repository.RepositoryCar.DeleteAllEntries(Car);
+
+                else if (result == MessageBoxResult.No)
+                    Repository.RepositoryCar.DeleteCar(Car);
             }
+            else
+            {
+                result = MessageBox.Show(
+                    "Продолжить удаление этой записи?",
+                    "Внимание!",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                    Repository.RepositoryCar.DeleteCar(Car);
+                else
+                    result = MessageBoxResult.Cancel;
+            }
+
+            if (result == MessageBoxResult.Yes || result == MessageBoxResult.No)
+                main.RemoveCar(this);
         }
     }
 }
