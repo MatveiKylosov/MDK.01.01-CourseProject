@@ -97,10 +97,11 @@ namespace MDK._01._01_CourseProject.Repository
             }
         }
 
-        public static bool DeleteCarSale(int saleID)
+        public static bool DeleteCarSale(CarSale carSale)
         {
             using (var connection = new MySqlConnection(Config.connectionString))
             {
+                int saleID = carSale.SaleID;
                 try
                 {
                     connection.Open();
