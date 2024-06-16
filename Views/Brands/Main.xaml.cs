@@ -14,17 +14,13 @@ namespace MDK._01._01_CourseProject.Views.Brands
 {
     public partial class Main : Page
     {
-        // Поля для хранения выбранных значений фильтра
-        private string _selectedCountry = "Не выбран.";
-        private string _selectedManufacturer = "Не выбран.";
-        private string _selectedAddress = "Не выбран.";
+        private string _selectedCountry = "";
+        private string _selectedManufacturer = "";
+        private string _selectedAddress = "";
         private bool _filterUse = false;
-
-        // Список всех брендов и коллекция для отображения на UI
         private List<Brand> _brands;
         private ObservableCollection<BrandUserControl> Brands { get; set; }
 
-        // Конструктор страницы, инициализация компонентов и списков
         public Main(List<Brand> brands)
         {
             InitializeComponent();
@@ -34,30 +30,26 @@ namespace MDK._01._01_CourseProject.Views.Brands
             BrandList.ItemsSource = Brands;
         }
 
-        // Метод для инициализации брендов, с учетом фильтрации
-        private void InitializeBrands()
+        private void InitializeBrands(string selectedCountry = null, string selectedManufacturer = null, string selectedAddress = null)
         {
-            var filteredBrands = _filterUse
-                ? _brands.Where(BrandMatchesFilter).ToList()
-                : _brands;
+            var filteredBrands = _brands.Where(x =>
+            {
+                if ((selectedCountry == null || selectedCountry == "Не выбран.") && (selectedManufacturer == null || selectedManufacturer == "Не выбран.") && (selectedManufacturer == null|| selectedCountry == "Не выбран."))
+                    return true;
+                if (selectedCountry != "Не выбран." && selectedCountry != null && selectedCountry != x.Country)
+                    return false;
+                if (selectedManufacturer != "Не выбран." && selectedManufacturer != null && selectedManufacturer != x.Manufacturer)
+                    return false;
+                if (selectedAddress != "Не выбран." && selectedAddress != null && selectedAddress != x.Address)
+                    return false;
+                return true;
+            }).ToList();
 
             Brands.Clear();
             foreach (var brand in filteredBrands)
-            {
                 Brands.Add(new BrandUserControl(brand, this));
-            }
         }
 
-        // Метод для проверки соответствия бренда фильтру
-        private bool BrandMatchesFilter(Brand brand)
-        {
-            if (_selectedCountry != "Не выбран." && _selectedCountry != brand.Country) return false;
-            if (_selectedManufacturer != "Не выбран." && _selectedManufacturer != brand.Manufacturer) return false;
-            if (_selectedAddress != "Не выбран." && _selectedAddress != brand.Address) return false;
-            return true;
-        }
-
-        // Метод для удаления бренда
         public void RemoveBrand(BrandUserControl brandControl)
         {
             if (brandControl != null)
@@ -67,7 +59,6 @@ namespace MDK._01._01_CourseProject.Views.Brands
             }
         }
 
-        // Метод для добавления нового бренда
         private void AddBrand_Click(object sender, RoutedEventArgs e)
         {
             RepositoryBrand.AddBrand(new Brand());
@@ -79,20 +70,15 @@ namespace MDK._01._01_CourseProject.Views.Brands
             }
         }
 
-        // Метод для экспорта брендов в Excel
         private void ExportBrands_Click(object sender, RoutedEventArgs e)
         {
-            var saveFileDialog = new SaveFileDialog
-            {
-                Filter = "Файлы Excel (*.xlsx)|*.xlsx",
-                Title = "Сохранить файл Excel"
-            };
-
+            var saveFileDialog = new SaveFileDialog { Filter = "Файлы Excel (*.xlsx)|*.xlsx", Title = "Сохранить файл Excel" };
             if (saveFileDialog.ShowDialog() == true)
             {
+                var filePath = saveFileDialog.FileName;
                 try
                 {
-                    ExportToExcel(saveFileDialog.FileName);
+                    ExportToExcel(filePath);
                     MessageBox.Show("Данные успешно экспортированы!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
@@ -102,21 +88,16 @@ namespace MDK._01._01_CourseProject.Views.Brands
             }
         }
 
-        // Метод для записи данных в Excel файл
         private void ExportToExcel(string filePath)
         {
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Бренды");
                 var headers = new[] { "BrandID", "BrandName", "Country", "Manufacturer", "Address" };
-
-                // Заполнение заголовков
                 for (int i = 0; i < headers.Length; i++)
                 {
                     worksheet.Cells[1, i + 1].Value = headers[i];
                 }
-
-                // Заполнение данных брендов
                 for (int i = 0; i < _brands.Count; i++)
                 {
                     var brand = _brands[i];
@@ -126,43 +107,35 @@ namespace MDK._01._01_CourseProject.Views.Brands
                     worksheet.Cells[i + 2, 4].Value = brand.Manufacturer;
                     worksheet.Cells[i + 2, 5].Value = brand.Address;
                 }
-
                 package.SaveAs(new FileInfo(filePath));
             }
         }
 
-        // Метод для обновления списка брендов
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             _brands = RepositoryBrand.GetBrands();
             InitializeBrands();
         }
 
-        // Метод для открытия окна фильтрации
         private void FilterBrand_Click(object sender, RoutedEventArgs e)
         {
+            var filter = new Filter();
             var countries = _brands.Select(b => b.Country).Distinct().ToList();
             var manufacturers = _brands.Select(b => b.Manufacturer).Distinct().ToList();
             var addresses = _brands.Select(b => b.Address).Distinct().ToList();
 
-            var filter = new Filter(countries, manufacturers, addresses, _filterUse)
+            _filterUse = filter.ShowDialog(_filterUse, countries, manufacturers, addresses, _selectedCountry, _selectedManufacturer, _selectedAddress);
+            if (_filterUse)
             {
-                SelectedCountry = _selectedCountry,
-                SelectedManufacturer = _selectedManufacturer,
-                SelectedAddress = _selectedAddress
-            };
-
-            if (filter.ShowDialog() == true)
-            {
-                _filterUse = true;
                 _selectedCountry = filter.SelectedCountry;
                 _selectedManufacturer = filter.SelectedManufacturer;
                 _selectedAddress = filter.SelectedAddress;
+                InitializeBrands(_selectedCountry, _selectedManufacturer, _selectedAddress);
             }
             else
-                _filterUse = false;
-
-            InitializeBrands();
+            {
+                InitializeBrands();
+            }
         }
     }
 }

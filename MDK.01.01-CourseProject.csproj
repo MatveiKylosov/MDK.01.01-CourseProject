@@ -178,12 +178,6 @@
     <Compile Include="Views\Brands\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CarSales\CarSaleUserControl.xaml.cs">
-      <DependentUpon>CarSaleUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CarSales\Main.xaml.cs">
-      <DependentUpon>Main.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Cars\CarUserControl.xaml.cs">
       <DependentUpon>CarUserControl.xaml</DependentUpon>
     </Compile>
@@ -214,14 +208,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Brands\Main.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CarSales\CarSaleUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CarSales\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
