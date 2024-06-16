@@ -6,22 +6,49 @@ namespace MDK._01._01_CourseProject.Views.Brands
 {
     public partial class Filter : Window
     {
-        public string SelectedCountry { get; private set; }
-        public string SelectedManufacturer { get; private set; }
-        public string SelectedAddress { get; private set; }
-
-        private List<string> _countries;
-        private List<string> _manufacturers;
-        private List<string> _addresses;
-
-        public Filter()
-        {
-            InitializeComponent();
-            ActiveFilter.IsChecked = false;
-            CountryComboBox.IsEnabled = ManufacturerComboBox.IsEnabled = AddressComboBox.IsEnabled = false;
+        public string SelectedCountry { 
+            get
+            {
+                return CountryComboBox.SelectedItem as string;
+            } 
+            set
+            {
+                CountryComboBox.SelectedItem = value;
+            } 
+        }
+        public string SelectedManufacturer { 
+            get
+            {
+                return ManufacturerComboBox.SelectedItem as string;
+            } 
+            set
+            {
+                ManufacturerComboBox.SelectedItem = value;
+            } 
+        }
+        public string SelectedAddress {
+            get
+            {
+                return AddressComboBox.SelectedItem as string;
+            }
+            set 
+            {
+                AddressComboBox.SelectedItem = value;
+            }
         }
 
-        private void InitializeComboBoxes(string selectedCountry, string selectedManufacturer, string selectedAddress)
+        public Filter(List<string> countries, List<string> manufacturers, List<string> addresses, bool filterUse)
+        {
+            InitializeComponent();
+            ActiveFilter.IsChecked = filterUse;
+            CountryComboBox.IsEnabled = ManufacturerComboBox.IsEnabled = AddressComboBox.IsEnabled = filterUse;
+            InitializeComboBoxes(countries, manufacturers, addresses);
+        }
+
+        private void InitializeComboBoxes(
+            List<string> _countries,
+            List<string> _manufacturers,
+            List<string> _addresses)
         {
             CountryComboBox.Items.Clear();
             ManufacturerComboBox.Items.Clear();
@@ -37,32 +64,22 @@ namespace MDK._01._01_CourseProject.Views.Brands
                 ManufacturerComboBox.Items.Add(item);
             foreach (var item in _addresses)
                 AddressComboBox.Items.Add(item);
-
-            CountryComboBox.SelectedItem = selectedCountry;
-            ManufacturerComboBox.SelectedItem = selectedManufacturer;
-            AddressComboBox.SelectedItem = selectedAddress;
         }
 
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
-            SelectedCountry = CountryComboBox.SelectedItem as string;
-            SelectedManufacturer = ManufacturerComboBox.SelectedItem as string;
-            SelectedAddress = AddressComboBox.SelectedItem as string;
-            this.Close();
+            DialogResult = true;
+            Close();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            DialogResult = false;
+            Close();
         }
 
-        public bool ShowDialog(bool filterUse, List<string> countries, List<string> manufacturers, List<string> addresses, string selectedCountry, string selectedManufacturer, string selectedAddress)
+        public bool ShowDialog()
         {
-            ActiveFilter.IsChecked = filterUse;
-            _countries = countries;
-            _manufacturers = manufacturers;
-            _addresses = addresses;
-            InitializeComboBoxes(selectedCountry, selectedManufacturer, selectedAddress);
             base.ShowDialog();
             return ActiveFilter.IsChecked.HasValue && ActiveFilter.IsChecked.Value;
         }

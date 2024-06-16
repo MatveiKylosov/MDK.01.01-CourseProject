@@ -3,6 +3,7 @@ using MDK._01._01_CourseProject.Repository;
 using MDK._01._01_CourseProject.Views.Brands;
 using Microsoft.Win32;
 using OfficeOpenXml;
+using Org.BouncyCastle.Bcpg;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,6 +25,19 @@ namespace MDK._01._01_CourseProject.Views.Cars
 {
     public partial class Main : Page
     {
+        private bool filterUse = false;
+        private int SelectedBrandID = -1;
+
+        private int EnteredFirstDate;
+        private int EnteredSecondDate;
+
+        private decimal EnteredFirtPrice;
+        private decimal EnteredSecondPrice;
+
+        private string SelectedColor = "Не выбран.";
+        private string SelectedCategory = "Не выбран.";
+
+
         private List<Car> _cars;
         private ObservableCollection<CarUserControl> Cars { get; set; }
         public Main(List<Car> cars)
@@ -37,10 +51,37 @@ namespace MDK._01._01_CourseProject.Views.Cars
 
         public void InitializeCars()
         {
-            var filteredCars = _cars; 
+            List<Car> cars = _cars;
+
+            if (filterUse)
+                cars.FindAll(car =>
+                {
+                    if (SelectedBrandID != -1 && car.BrandID != SelectedBrandID)
+                        return false;
+
+                    if (EnteredFirstDate != 0 && car.YearOfProduction.Value < EnteredFirstDate)
+                        return false;
+
+                    if (EnteredSecondDate != 0 && car.YearOfProduction.Value > EnteredSecondDate)
+                        return false;
+
+                    if (EnteredFirtPrice != 0 && car.Price.Value < EnteredFirtPrice)
+                        return false;
+
+                    if (EnteredSecondPrice != 0 && car.Price > EnteredSecondPrice)
+                        return false;
+
+                    if(SelectedColor != "Не выбран." && SelectedColor != car.Color)
+                        return false;
+
+                    if (SelectedCategory != "Не выбран." && SelectedCategory != car.Category)
+                        return false;
+
+                    return true;
+                });
 
             Cars.Clear();
-            foreach (var car in _cars)
+            foreach (var car in cars)
                 Cars.Add(new CarUserControl(car, this));
         }
 
@@ -54,6 +95,7 @@ namespace MDK._01._01_CourseProject.Views.Cars
                 Cars.Add(new CarUserControl(addedCar, this));
             }
         }
+
         public void RemoveCar(CarUserControl carControl)
         {
             if (carControl != null)
@@ -68,7 +110,6 @@ namespace MDK._01._01_CourseProject.Views.Cars
             _cars = RepositoryCar.GetCars();
             InitializeCars();
         }
-
 
         private void ExportCars_Click(object sender, RoutedEventArgs e)
         {
@@ -119,12 +160,25 @@ namespace MDK._01._01_CourseProject.Views.Cars
                 // Сохранение в файл
                 FileInfo fileInfo = new FileInfo(filePath);
                 package.SaveAs(fileInfo);
+                package.Dispose();
             }
         }
 
         private void FilterCars_Click(object sender, RoutedEventArgs e)
         {
+            var colors = RepositoryCar.GetCars().Select(b => b.Color).Distinct().ToList();
+            var categories = RepositoryCar.GetCars().Select(b => b.Category).Distinct().ToList();
+            Filter filter = new Filter(colors, categories, filterUse);
 
+            filter.SelectedBrandID      = this.SelectedBrandID;
+            filter.EnteredFirstDate     = this.EnteredFirstDate;
+            filter.EnteredSecondDate    = this.EnteredSecondDate;
+            filter.EnteredFirstPrice    = this.EnteredFirtPrice;
+            filter.EnteredSecondPrice   = this.EnteredSecondPrice;
+            filter.SelectedColor        = this.SelectedColor;
+            filter.SelectedCategory     = this.SelectedCategory;
+            filterUse = filter.ShowDialog();
+            InitializeCars();
         }
     }
 }

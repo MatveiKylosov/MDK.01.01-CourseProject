@@ -4,9 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.Cars"
-        mc:Ignorable="d"
-        Title="Filter" Height="450" Width="800">
-    <Grid>
-        
+        mc:Ignorable="d"        Title="Фильтр таблицы Бренды" MinHeight="380" MinWidth="300" MaxHeight="880" MaxWidth="300">
+    <Grid Background="#F0EDCC">
+        <StackPanel Background="#02343F" Margin="15">
+
+            <TextBlock Text="Бренд:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <ComboBox x:Name="BrandComboBox" Width="230" Margin="10,15,10,0"/>
+
+            <TextBlock Text="Выпушен от:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <TextBox x:Name="FirstDate" Width="230" Margin="10,15,10,0"/>
+
+            <TextBlock Text="Выпушен до:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <TextBox x:Name="SecondDate" Width="230" Margin="10,15,10,0"/>
+
+            <TextBlock Text="Цвет:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <ComboBox x:Name="ColorComboBox" Width="230" Margin="10,15,10,0"/>
+
+            <TextBlock Text="Категория:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <ComboBox x:Name="CategoryComboBox" Width="230" Margin="10,15,10,0"/>
+
+            <TextBlock Text="Цена от:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <TextBox x:Name="FirtPrice" Width="230" Margin="10,15,10,0"/>
+
+            <TextBlock Text="Цена до:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <TextBox x:Name="SecondPrice" Width="230" Margin="10,15,10,0"/>
+
+            <CheckBox x:Name="ActiveFilter" Content="Использовать фильтр" Margin="20,10,0,0" FontSize="16px" Foreground="White" FontWeight="Bold" Checked="ActiveFilter_Checked" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,30">
+                <Button Content="Применить" Background="#F0EDCC" Foreground="#02343F" Height="30" Width="80" Margin="0, 0, 10, 0" Grid.Column="1" Click="Apply_Click"/>
+                <Button Content="Отменить" Background="#F0EDCC" Foreground="#02343F" Height="30" Width="80" Margin="0, 0, 0, 0" Grid.Column="1" Click="Cancel_Click"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
