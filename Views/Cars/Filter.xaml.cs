@@ -1,6 +1,5 @@
 ﻿using MDK._01._01_CourseProject.Models;
 using MDK._01._01_CourseProject.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -8,20 +7,11 @@ using System.Windows.Controls;
 
 namespace MDK._01._01_CourseProject.Views.Cars
 {
-    /// <summary>
-    /// Логика взаимодействия для Filter.xaml
-    /// </summary>
     public partial class Filter : Window
     {
         public int SelectedBrandID
         {
-            get
-            {
-                if (BrandComboBox.SelectedItem is ComboBoxItem selectedItem)
-                    return (int)selectedItem.Tag;
-                
-                return -1;
-            }
+            get => BrandComboBox.SelectedItem is ComboBoxItem selectedItem ? (int)selectedItem.Tag : -1;
             set
             {
                 foreach (ComboBoxItem item in BrandComboBox.Items)
@@ -71,68 +61,69 @@ namespace MDK._01._01_CourseProject.Views.Cars
             set => CategoryComboBox.SelectedItem = value;
         }
 
-        public Filter(List<string> _color, List<string> _category, bool filterUse)
+        public Filter(List<string> colors, List<string> categories, bool filterUse)
         {
             InitializeComponent();
             ActiveFilter.IsChecked = filterUse;
-            SecondDate.IsEnabled = FirstDate.IsEnabled = ColorComboBox.IsEnabled = 
-                CategoryComboBox.IsEnabled = FirtPrice.IsEnabled = SecondPrice.IsEnabled = filterUse;
-            InitializeComboBoxes(_color, _category);
+            ToggleFilterControls(filterUse);
+            InitializeComboBoxes(colors, categories);
         }
 
-        private void InitializeComboBoxes(List<string> _color, List<string> _category)
+        // Инициализация комбо-боксов
+        private void InitializeComboBoxes(List<string> colors, List<string> categories)
         {
             ColorComboBox.Items.Clear();
             CategoryComboBox.Items.Clear();
             BrandComboBox.Items.Clear();
 
-
             ColorComboBox.Items.Add("Не выбран.");
             CategoryComboBox.Items.Add("Не выбран.");
+
             var defaultItem = new ComboBoxItem { Content = "Не выбран.", Tag = -1 };
             BrandComboBox.Items.Add(defaultItem);
 
-            foreach (var color in _color)      
-                ColorComboBox.Items.Add(color);
-            
-            foreach (var category in _category)
-                CategoryComboBox.Items.Add(category);
+            foreach (var color in colors) ColorComboBox.Items.Add(color);
+            foreach (var category in categories) CategoryComboBox.Items.Add(category);
 
             var brands = RepositoryBrand.GetBrands();
             foreach (var brand in brands)
             {
-                var brandItem = new ComboBoxItem
-                {
-                    Content = brand.BrandName,
-                    Tag = brand.BrandID
-                };
+                var brandItem = new ComboBoxItem { Content = brand.BrandName, Tag = brand.BrandID };
                 BrandComboBox.Items.Add(brandItem);
             }
         }
 
+        // Показать диалоговое окно
         public bool ShowDialog()
         {
             base.ShowDialog();
             return ActiveFilter.IsChecked == true;
         }
 
+        // Обработчик изменения состояния чекбокса
         private void ActiveFilter_Checked(object sender, RoutedEventArgs e)
         {
-            bool isEnabled = ActiveFilter.IsChecked == true;
-            SecondDate.IsEnabled = FirstDate.IsEnabled = ColorComboBox.IsEnabled =
-                CategoryComboBox.IsEnabled = FirtPrice.IsEnabled = SecondPrice.IsEnabled = isEnabled;
+            ToggleFilterControls(ActiveFilter.IsChecked == true);
         }
 
+        // Применение фильтра
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
             Close();
         }
 
+        // Отмена фильтрации
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             Close();
+        }
+
+        // Переключение состояния контролов фильтра
+        private void ToggleFilterControls(bool isEnabled)
+        {
+            SecondDate.IsEnabled = FirstDate.IsEnabled = ColorComboBox.IsEnabled = CategoryComboBox.IsEnabled = FirtPrice.IsEnabled = SecondPrice.IsEnabled = isEnabled;
         }
     }
 }
