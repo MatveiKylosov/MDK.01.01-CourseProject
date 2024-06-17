@@ -25,10 +25,10 @@ namespace MDK._01._01_CourseProject.Views.Brands
         private ObservableCollection<BrandUserControl> Brands { get; set; }
 
         // Конструктор страницы, инициализация компонентов и списков
-        public Main(List<Brand> brands)
+        public Main()
         {
             InitializeComponent();
-            _brands = brands ?? new List<Brand>();
+            _brands = RepositoryBrand.GetBrands();
             Brands = new ObservableCollection<BrandUserControl>();
             InitializeBrands();
             BrandList.ItemsSource = Brands;

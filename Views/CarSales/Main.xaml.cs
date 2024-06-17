@@ -38,10 +38,10 @@ namespace MDK._01._01_CourseProject.Views.CarSales
 
         private List<CarSale> _carSales;
         private ObservableCollection<CarSaleUserControl> CarSale { get;set;}
-        public Main(List<CarSale> carSales)
+        public Main()
         {
             InitializeComponent();
-            _carSales = carSales ?? new List<CarSale>();
+            _carSales = RepositoryCarSale.GetCarSales();
             CarSale = new ObservableCollection<CarSaleUserControl>();
             InitializeCarSales();
             CarSaleList.ItemsSource = CarSale;
@@ -125,11 +125,19 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                 for (int i = 0; i < carSales.Count; i++)
                 {
                     var carSale = carSales[i].CarSale;
+                    var FindEmployee = RepositoryEmployee.GetEmployees().FirstOrDefault(x => x.EmployeeID == carSale.EmployeeID);
+                    var FindCar = RepositoryCar.GetCars().FirstOrDefault(x => x.CarID == carSale.CarID);
+                    var FindCustomer = RepositoryCustomer.GetCustomers().FirstOrDefault(x => x.CustomerID == carSale.CustomerID);
                     worksheet.Cells[i + 2, 1].Value = carSale.SaleID;
                     worksheet.Cells[i + 2, 2].Value = carSale.SaleDate;
-                    worksheet.Cells[i + 2, 3].Value = RepositoryEmployee.GetEmployees().FirstOrDefault(x => x.EmployeeID == carSale.EmployeeID).FullName;
-                    worksheet.Cells[i + 2, 4].Value = RepositoryCar.GetCars().FirstOrDefault(x => x.CarID == carSale.CarID).CarName;
-                    worksheet.Cells[i + 2, 5].Value = RepositoryCustomer.GetCustomers().FirstOrDefault(x => x.CustomerID == carSale.CustomerID).FullName;
+
+
+                    if (FindEmployee != null)
+                        worksheet.Cells[i + 2, 3].Value = FindEmployee.FullName;
+                    if(FindCar != null)
+                        worksheet.Cells[i + 2, 4].Value = FindCar.CarName;
+                    if(FindCustomer != null)
+                        worksheet.Cells[i + 2, 5].Value = FindCustomer.FullName;
                 }
 
                 // Сохранение в файл

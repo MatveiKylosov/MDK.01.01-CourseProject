@@ -24,11 +24,32 @@ namespace MDK._01._01_CourseProject
         public MainWindow()
         {
             InitializeComponent();
-            Frame.Navigate(new Views.Brands.Main(Repository.RepositoryBrand.GetBrands()));
-            Frame.Navigate(new Views.Cars.Main(Repository.RepositoryCar.GetCars()));
-            Frame.Navigate(new Views.CarSales.Main(Repository.RepositoryCarSale.GetCarSales()));
-            Frame.Navigate(new Views.Customers.Main(Repository.RepositoryCustomer.GetCustomers()));
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(new Views.Brands.Main());
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(new Views.Cars.Main());
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(new Views.CarSales.Main());
+        } 
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(new Views.Customers.Main());
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(new Views.Employees.Main());
         }
     }
 }

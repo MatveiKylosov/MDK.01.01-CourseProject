@@ -24,10 +24,10 @@ namespace MDK._01._01_CourseProject.Views.Employees
         private List<Employee> _employees;
         private ObservableCollection<EmployeeUserControl> Employees { get; set; }
 
-        public Main(List<Employee> employees)
+        public Main()
         {
             InitializeComponent();
-            _employees = employees ?? new List<Employee>();
+            _employees = RepositoryEmployee.GetEmployees();
             Employees = new ObservableCollection<EmployeeUserControl>();
             InitializeEmployees();
             CarSaleList.ItemsSource = Employees;

@@ -25,10 +25,10 @@ namespace MDK._01._01_CourseProject.Views.Cars
         private List<Car> _cars;
         private ObservableCollection<CarUserControl> Cars { get; set; }
 
-        public Main(List<Car> cars)
+        public Main()
         {
             InitializeComponent();
-            _cars = cars ?? new List<Car>();
+            _cars = RepositoryCar.GetCars();
             Cars = new ObservableCollection<CarUserControl>();
             InitializeCars();
             CarList.ItemsSource = Cars;
@@ -124,7 +124,10 @@ namespace MDK._01._01_CourseProject.Views.Cars
                     var car = cars[i].Car;
                     worksheet.Cells[i + 2, 1].Value = car.CarID;
                     worksheet.Cells[i + 2, 2].Value = car.CarName;
-                    worksheet.Cells[i + 2, 3].Value = RepositoryBrand.GetBrands().FirstOrDefault(x => x.BrandID == car.BrandID).BrandName;
+                    
+                    var BrandFind = RepositoryBrand.GetBrands().FirstOrDefault(x => x.BrandID == car.BrandID);
+                    if(BrandFind != null)
+                        worksheet.Cells[i + 2, 3].Value = BrandFind.BrandName;
                     worksheet.Cells[i + 2, 4].Value = car.YearOfProduction;
                     worksheet.Cells[i + 2, 5].Value = car.Color;
                     worksheet.Cells[i + 2, 6].Value = car.Category;

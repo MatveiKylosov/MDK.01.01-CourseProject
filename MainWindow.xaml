@@ -14,11 +14,11 @@
             <Label Content="Таблица" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18"/>
 
             <StackPanel Orientation="Horizontal">
-                <Button Content="Марки" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
-                <Button Content="Машины" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
-                <Button Content="Продажи" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
-                <Button Content="Клиенты" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
-                <Button Content="Сотрудники" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
+                <Button Content="Марки" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="Button_Click"/>
+                <Button Content="Машины" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="Button_Click_1"/>
+                <Button Content="Продажи" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="Button_Click_2"/>
+                <Button Content="Клиенты" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="Button_Click_3"/>
+                <Button Content="Сотрудники" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="Button_Click_4"/>
             </StackPanel>
         </Grid>
 

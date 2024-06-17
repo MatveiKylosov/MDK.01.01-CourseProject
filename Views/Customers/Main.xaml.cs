@@ -25,10 +25,10 @@ namespace MDK._01._01_CourseProject.Views.Customers
         private List<Customer> _customers;
         private ObservableCollection<CustomerUserControl> Customers { get; set; }
 
-        public Main(List<Customer> customers)
+        public Main()
         {
             InitializeComponent();
-            _customers = customers ?? new List<Customer>();
+            _customers = RepositoryCustomer.GetCustomers();
             Customers = new ObservableCollection<CustomerUserControl>();
             InitializeCustomers();
             CarSaleList.ItemsSource = Customers;
