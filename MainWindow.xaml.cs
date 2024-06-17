@@ -1,18 +1,6 @@
 ﻿using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MDK._01._01_CourseProject
 {
@@ -27,28 +15,33 @@ namespace MDK._01._01_CourseProject
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OpenBrands_Click(object sender, RoutedEventArgs e)
         {
+            TableName.Content = "Таблица: Бренды";
             Frame.Navigate(new Views.Brands.Main());
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void OpenCars_Click(object sender, RoutedEventArgs e)
         {
+            TableName.Content = "Таблица: Машины";
             Frame.Navigate(new Views.Cars.Main());
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void OpenSales_Click(object sender, RoutedEventArgs e)
         {
+            TableName.Content = "Таблица: Продажи";
             Frame.Navigate(new Views.CarSales.Main());
-        } 
+        }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void OpenCustomers_Click(object sender, RoutedEventArgs e)
         {
+            TableName.Content = "Таблица: Клиенты";
             Frame.Navigate(new Views.Customers.Main());
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void OpenEmployees_Click(object sender, RoutedEventArgs e)
         {
+            TableName.Content = "Таблица: Сотрудники";
             Frame.Navigate(new Views.Employees.Main());
         }
     }

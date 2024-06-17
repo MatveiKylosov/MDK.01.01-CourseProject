@@ -6,9 +6,9 @@
        xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.CarSales"
        mc:Ignorable="d">
     <Grid Background="#02343F">
-        <Image Grid.Row="0" Grid.Column="0" Width="40px" Height="40px" Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        
 
-        <Grid Margin="40, 0, 0, 0">
+        <Grid Margin="0, 0, 0, 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

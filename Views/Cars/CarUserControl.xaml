@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.Cars"
              mc:Ignorable="d">
     <Grid Background="#02343F">
-        <Image Grid.Row="0" Grid.Column="0" Width="40px" Height="40px" Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        
 
-        <Grid Margin="40, 0, 0, 0">
+        <Grid Margin="0, 0, 0, 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -21,7 +21,7 @@
                 </Grid.Effect>
 
                 <Label Content="Название:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <TextBox x:Name="CarName" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+                <TextBox x:Name="CarName" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
             <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC">
@@ -39,7 +39,7 @@
                 </Grid.Effect>
 
                 <Label Content="Год производства:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <TextBox x:Name="YearOfProduction" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+                <TextBox x:Name="YearOfProduction" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
             <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="1">
@@ -48,7 +48,7 @@
                 </Grid.Effect>
 
                 <Label Content="Цвет:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <TextBox x:Name="Color" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+                <TextBox x:Name="Color" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
             <Grid Margin="10" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="3">
@@ -57,7 +57,7 @@
                 </Grid.Effect>
 
                 <Label Content="Категория:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <TextBox x:Name="Category" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+                <TextBox x:Name="Category" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
             <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="3">
@@ -66,7 +66,7 @@
                 </Grid.Effect>
 
                 <Label Content="Цена:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <TextBox x:Name="Price" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+                <TextBox x:Name="Price" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
             <Button x:Name="DeleteButton" Content="Удалить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10, 145, 85, 10" Grid.ColumnSpan="3" Click="DeleteButton_Click"/>

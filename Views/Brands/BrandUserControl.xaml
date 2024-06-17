@@ -6,9 +6,7 @@
              xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.Brands"
              mc:Ignorable="d">
     <Grid Background="#02343F">
-        <Image Grid.Row="0" Grid.Column="0" Source="/Images/brand.png" Width="40px" Height="40px" Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-
-        <Grid Margin="40, 0, 0, 0">
+        <Grid Margin="0, 0, 0, 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -20,7 +18,7 @@
                 </Grid.Effect>
 
                 <Label Content="Название бренда:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <TextBox x:Name="BrandName" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0" IsEnabled="{Binding IsEnable}"/>
+                <TextBox x:Name="BrandName" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0" IsEnabled="{Binding IsEnable}"/>
             </Grid>
 
             <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC">
@@ -237,7 +235,7 @@
                 </Grid.Effect>
 
                 <Label Content="Завод:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <TextBox x:Name="Manufacturer" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0" IsEnabled="{Binding IsEnable}"/>
+                <TextBox x:Name="Manufacturer" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0" IsEnabled="{Binding IsEnable}"/>
             </Grid>
 
             <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="1">
@@ -246,7 +244,7 @@
                 </Grid.Effect>
 
                 <Label Content="Адрес:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <TextBox x:Name="Address" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0" IsEnabled="{Binding IsEnable}"/>
+                <TextBox x:Name="Address" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0" IsEnabled="{Binding IsEnable}"/>
             </Grid>
 
             <Button x:Name="DeleteButton" Content="Удалить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10, 145, 85, 10" Grid.Column="1" Click="DeleteButton_Click"/>

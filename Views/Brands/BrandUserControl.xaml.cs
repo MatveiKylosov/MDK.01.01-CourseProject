@@ -1,19 +1,9 @@
 ﻿using MDK._01._01_CourseProject.Models;
+using MDK._01._01_CourseProject.Repository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MDK._01._01_CourseProject.Repository;
 
 namespace MDK._01._01_CourseProject.Views.Brands
 {
@@ -59,7 +49,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if(!edit)
+            if (!edit)
             {
                 edit = true;
                 EditButton.Content = "Сохранить";
@@ -97,7 +87,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
             brand.Manufacturer = this.Manufacturer.Text;
             brand.Country = this.Country.SelectedValue.ToString();
             brand.Address = this.Address.Text;
-            
+
             RepositoryBrand.UpdateBrand(brand);
             edit = false;
         }
@@ -117,7 +107,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
 
                 if (result == MessageBoxResult.Yes)
                     Repository.RepositoryBrand.DeleteAllEntries(brand);
-                
+
                 else if (result == MessageBoxResult.No)
                     Repository.RepositoryBrand.DeleteBrand(brand);
             }
@@ -136,7 +126,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
             }
 
             if (result == MessageBoxResult.Yes || result == MessageBoxResult.No)
-                main.RemoveBrand(this);   
+                main.RemoveBrand(this);
         }
     }
 }

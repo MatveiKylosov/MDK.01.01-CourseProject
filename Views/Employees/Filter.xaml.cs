@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 // Filter.xaml.cs для таблицы Employees
 namespace MDK._01._01_CourseProject.Views.Employees
@@ -27,8 +15,8 @@ namespace MDK._01._01_CourseProject.Views.Employees
         {
             get
             {
-                if(int.TryParse(WorkExperienceFrom.Text, out int value))
-                    return value;           
+                if (int.TryParse(WorkExperienceFrom.Text, out int value))
+                    return value;
                 return null;
             }
             set => WorkExperienceFrom.Text = value?.ToString();
@@ -38,7 +26,7 @@ namespace MDK._01._01_CourseProject.Views.Employees
         {
             get
             {
-                if(int.TryParse(WorkExperienceTo.Text, out int value))
+                if (int.TryParse(WorkExperienceTo.Text, out int value))
                     return value;
                 return null;
             }
@@ -49,7 +37,7 @@ namespace MDK._01._01_CourseProject.Views.Employees
         {
             get
             {
-                if(decimal.TryParse(SalaryFrom.Text, out decimal value))
+                if (decimal.TryParse(SalaryFrom.Text, out decimal value))
                     return value;
                 return null;
             }
@@ -60,7 +48,7 @@ namespace MDK._01._01_CourseProject.Views.Employees
         {
             get
             {
-                if(decimal.TryParse(SalaryTo.Text, out decimal value))
+                if (decimal.TryParse(SalaryTo.Text, out decimal value))
                     return value;
                 return null;
             }

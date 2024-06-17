@@ -70,7 +70,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
         // Метод для добавления нового бренда
         private void AddBrand_Click(object sender, RoutedEventArgs e)
         {
-            var addedBrand = new Brand() { BrandID = RepositoryBrand.AddBrand()};
+            var addedBrand = new Brand() { BrandID = RepositoryBrand.AddBrand() };
             _brands.Add(addedBrand);
             Brands.Add(new BrandUserControl(addedBrand, this));
         }

@@ -7,18 +7,19 @@
         mc:Ignorable="d"
         Title="Автосалон" Height="450" Width="800">
     <Grid Background="#F0F0F0">
-        <Grid Height="50" VerticalAlignment="Top" Background="White">
+        <Grid Height="55" VerticalAlignment="Top" Background="White">
             <Grid.Effect>
                 <DropShadowEffect Opacity="0.1"/>
             </Grid.Effect>
-            <Label Content="Таблица" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18"/>
 
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Марки" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="Button_Click"/>
-                <Button Content="Машины" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="Button_Click_1"/>
-                <Button Content="Продажи" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="Button_Click_2"/>
-                <Button Content="Клиенты" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="Button_Click_3"/>
-                <Button Content="Сотрудники" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="Button_Click_4"/>
+            <Label x:Name="TableName" Content="Таблица: Сотрудники" VerticalAlignment="Center" Margin="15,0,0,0" FontWeight="Bold" Foreground="#02343F"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button Margin="5" Content="Марки" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenBrands_Click"/>
+                <Button Margin="5" Content="Машины" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenCars_Click"/>
+                <Button Margin="5" Content="Продажи" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenSales_Click"/>
+                <Button Margin="5" Content="Клиенты" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenCustomers_Click"/>
+                <Button Margin="5" Content="Сотрудники" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenEmployees_Click"/>
             </StackPanel>
         </Grid>
 

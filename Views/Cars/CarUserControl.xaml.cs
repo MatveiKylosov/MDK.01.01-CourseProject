@@ -2,10 +2,8 @@
 using MDK._01._01_CourseProject.Repository;
 using System;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using System.Windows;
 using System.Windows.Controls;
-using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace MDK._01._01_CourseProject.Views.Cars
 {

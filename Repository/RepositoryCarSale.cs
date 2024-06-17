@@ -1,8 +1,8 @@
 ﻿using MDK._01._01_CourseProject.Models;
+using MDK._01._01_CourseProject.SQL;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using MDK._01._01_CourseProject.SQL;
 using System.Windows;
 
 namespace MDK._01._01_CourseProject.Repository

@@ -1,22 +1,9 @@
-﻿using Google.Protobuf.WellKnownTypes;
-using MDK._01._01_CourseProject.Models;
-using MDK._01._01_CourseProject.Repository;
+﻿using MDK._01._01_CourseProject.Repository;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Remoting;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Markup;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MDK._01._01_CourseProject.Views.CarSales
 {
@@ -175,7 +162,7 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                 CustomerComboBox.Items.Add(customerItem);
             }
         }
-        
+
         private void PopulateCarComboBox(int? brandId)
         {
             CarComboBox.Items.Clear();
@@ -204,7 +191,7 @@ namespace MDK._01._01_CourseProject.Views.CarSales
             // Если машина не выбрана, устанавливаем "Не выбран." в качестве выбранного элемента
             if (SelectedCarID == -1)
                 CarComboBox.SelectedIndex = 0;
-            
+
         }
 
         // Показать диалоговое окно

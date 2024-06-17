@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MDK._01._01_CourseProject.Models
+﻿namespace MDK._01._01_CourseProject.Models
 {
     public class Brand
     {

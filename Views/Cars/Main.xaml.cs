@@ -124,9 +124,9 @@ namespace MDK._01._01_CourseProject.Views.Cars
                     var car = cars[i].Car;
                     worksheet.Cells[i + 2, 1].Value = car.CarID;
                     worksheet.Cells[i + 2, 2].Value = car.CarName;
-                    
+
                     var BrandFind = RepositoryBrand.GetBrands().FirstOrDefault(x => x.BrandID == car.BrandID);
-                    if(BrandFind != null)
+                    if (BrandFind != null)
                         worksheet.Cells[i + 2, 3].Value = BrandFind.BrandName;
                     worksheet.Cells[i + 2, 4].Value = car.YearOfProduction;
                     worksheet.Cells[i + 2, 5].Value = car.Color;

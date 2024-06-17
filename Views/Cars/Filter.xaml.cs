@@ -1,7 +1,5 @@
-﻿using MDK._01._01_CourseProject.Models;
-using MDK._01._01_CourseProject.Repository;
+﻿using MDK._01._01_CourseProject.Repository;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 

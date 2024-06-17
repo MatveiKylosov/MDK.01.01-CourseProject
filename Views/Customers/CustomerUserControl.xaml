@@ -6,11 +6,10 @@
              xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.Customers"
              mc:Ignorable="d" >
     <Grid Background="#02343F">
-        <Image Grid.Row="0" Grid.Column="0" Width="40px" Height="40px" Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        
 
-        <Grid Margin="40, 0, 0, 0">
+        <Grid Margin="0, 0, 0, 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -21,7 +20,7 @@
                 </Grid.Effect>
 
                 <Label Content="ФИО:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <TextBox x:Name="FullName"  VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+                <TextBox x:Name="FullName"  VerticalContentAlignment="Center"  VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
 
