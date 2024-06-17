@@ -46,33 +46,27 @@ namespace MDK._01._01_CourseProject.Repository
             return customers;
         }
 
-        public static bool AddCustomer(Customer customer)
+        public static int AddCustomer()
         {
             using (var connection = new MySqlConnection(Config.connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO Customers (FullName, PassportData, Address, BirthDate, Gender, ContactDetails) VALUES (@FullName, @PassportData, @Address, @BirthDate, @Gender, @ContactDetails)";
+                    string query = "INSERT INTO Customers (FullName, PassportData, Address, BirthDate, Gender, ContactDetails) VALUES (NULL, NULL, NULL, NULL, NULL, NULL); SELECT LAST_INSERT_ID();";
                     using (var cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@FullName", customer.FullName);
-                        cmd.Parameters.AddWithValue("@PassportData", customer.PassportData);
-                        cmd.Parameters.AddWithValue("@Address", customer.Address);
-                        cmd.Parameters.AddWithValue("@BirthDate", customer.BirthDate);
-                        cmd.Parameters.AddWithValue("@Gender", customer.Gender);
-                        cmd.Parameters.AddWithValue("@ContactDetails", customer.ContactDetails);
-                        cmd.ExecuteNonQuery();
+                        return Convert.ToInt32(cmd.ExecuteScalar());
                     }
-                    return true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка при добавлении клиента: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return false;
+                    return -1;
                 }
             }
         }
+
 
         public static bool UpdateCustomer(Customer customer)
         {

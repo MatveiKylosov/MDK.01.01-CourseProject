@@ -82,7 +82,7 @@ namespace MDK._01._01_CourseProject.Views.Cars
                 return;
             }
 
-            if (String.IsNullOrEmpty(YearOfProduction.Text) || !int.TryParse(YearOfProduction.Text, out int year))
+            if (YearOfProduction.Text.Length != 4 || !int.TryParse(YearOfProduction.Text, out int year))
             {
                 MessageBox.Show("Год производства должен быть числом.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

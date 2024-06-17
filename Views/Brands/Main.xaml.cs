@@ -70,13 +70,9 @@ namespace MDK._01._01_CourseProject.Views.Brands
         // Метод для добавления нового бренда
         private void AddBrand_Click(object sender, RoutedEventArgs e)
         {
-            RepositoryBrand.AddBrand(new Brand());
-            var addedBrand = RepositoryBrand.GetBrands().LastOrDefault();
-            if (addedBrand != null)
-            {
-                _brands.Add(addedBrand);
-                Brands.Add(new BrandUserControl(addedBrand, this));
-            }
+            var addedBrand = new Brand() { BrandID = RepositoryBrand.AddBrand()};
+            _brands.Add(addedBrand);
+            Brands.Add(new BrandUserControl(addedBrand, this));
         }
 
         // Метод для экспорта брендов в Excel

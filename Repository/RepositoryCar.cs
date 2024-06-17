@@ -46,33 +46,27 @@ namespace MDK._01._01_CourseProject.Repository
             return cars;
         }
 
-        public static bool AddCar(Car car)
+        public static int AddCar()
         {
             using (var connection = new MySqlConnection(Config.connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO Cars (CarName, BrandID, YearOfProduction, Color, Category, Price) VALUES (@CarName, @BrandID, @YearOfProduction, @Color, @Category, @Price)";
+                    string query = "INSERT INTO Cars (CarName, BrandID, YearOfProduction, Color, Category, Price) VALUES (NULL, NULL, NULL, NULL, NULL, NULL); SELECT LAST_INSERT_ID();";
                     using (var cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@CarName", car.CarName);
-                        cmd.Parameters.AddWithValue("@BrandID", car.BrandID);
-                        cmd.Parameters.AddWithValue("@YearOfProduction", car.YearOfProduction);
-                        cmd.Parameters.AddWithValue("@Color", car.Color);
-                        cmd.Parameters.AddWithValue("@Category", car.Category);
-                        cmd.Parameters.AddWithValue("@Price", car.Price);
-                        cmd.ExecuteNonQuery();
+                        return Convert.ToInt32(cmd.ExecuteScalar());
                     }
-                    return true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка при добавлении автомобиля: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return false;
+                    return -1;
                 }
             }
         }
+
 
         public static bool UpdateCar(Car car)
         {

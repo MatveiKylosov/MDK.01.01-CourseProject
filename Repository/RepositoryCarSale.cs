@@ -44,31 +44,27 @@ namespace MDK._01._01_CourseProject.Repository
             return carSales;
         }
 
-        public static bool AddCarSale(CarSale carSale)
+        public static int AddCarSale()
         {
             using (var connection = new MySqlConnection(Config.connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO CarSales (SaleDate, EmployeeID, CarID, CustomerID) VALUES (@SaleDate, @EmployeeID, @CarID, @CustomerID)";
+                    string query = "INSERT INTO CarSales (SaleDate, EmployeeID, CarID, CustomerID) VALUES (NULL, NULL, NULL, NULL); SELECT LAST_INSERT_ID();";
                     using (var cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@SaleDate", carSale.SaleDate);
-                        cmd.Parameters.AddWithValue("@EmployeeID", carSale.EmployeeID);
-                        cmd.Parameters.AddWithValue("@CarID", carSale.CarID);
-                        cmd.Parameters.AddWithValue("@CustomerID", carSale.CustomerID);
-                        cmd.ExecuteNonQuery();
+                        return Convert.ToInt32(cmd.ExecuteScalar());
                     }
-                    return true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка при добавлении продажи автомобиля: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return false;
+                    return -1;
                 }
             }
         }
+
 
         public static bool UpdateCarSale(CarSale carSale)
         {

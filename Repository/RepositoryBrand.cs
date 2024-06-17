@@ -44,31 +44,27 @@ namespace MDK._01._01_CourseProject.Repository
             return brands;
         }
 
-        public static bool AddBrand(Brand brand)
+        public static int AddBrand()
         {
             using (var connection = new MySqlConnection(Config.connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO Brands (BrandName, Country, Manufacturer, Address) VALUES (@BrandName, @Country, @Manufacturer, @Address)";
+                    string query = "INSERT INTO Brands (BrandName, Country, Manufacturer, Address) VALUES (NULL, NULL, NULL, NULL); SELECT LAST_INSERT_ID();";
                     using (var cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@BrandName", brand.BrandName);
-                        cmd.Parameters.AddWithValue("@Country", brand.Country);
-                        cmd.Parameters.AddWithValue("@Manufacturer", brand.Manufacturer);
-                        cmd.Parameters.AddWithValue("@Address", brand.Address);
-                        cmd.ExecuteNonQuery();
+                        return Convert.ToInt32(cmd.ExecuteScalar());
                     }
-                    return true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка при добавлении бренда: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return false;
+                    return -1; // или другое значение, обозначающее ошибку
                 }
             }
         }
+
 
         public static bool UpdateBrand(Brand brand)
         {

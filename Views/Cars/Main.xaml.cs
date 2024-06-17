@@ -62,13 +62,9 @@ namespace MDK._01._01_CourseProject.Views.Cars
         // Добавление новой машины
         private void AddCar_Click(object sender, RoutedEventArgs e)
         {
-            RepositoryCar.AddCar(new Car());
-            var addedCar = RepositoryCar.GetCars().LastOrDefault();
-            if (addedCar != null)
-            {
-                _cars.Add(addedCar);
-                Cars.Add(new CarUserControl(addedCar, this));
-            }
+            var addedCar = new Car() { CarID = RepositoryCar.AddCar() };
+            _cars.Add(addedCar);
+            Cars.Add(new CarUserControl(addedCar, this));
         }
 
         // Удаление машины

@@ -44,28 +44,23 @@ namespace MDK._01._01_CourseProject.Repository
             return employees;
         }
 
-        public static bool AddEmployee(Employee employee)
+        public static int AddEmployee()
         {
             using (var connection = new MySqlConnection(Config.connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO Employees (FullName, WorkExperience, Salary, ContactDetails) VALUES (@FullName, @WorkExperience, @Salary, @ContactDetails)";
+                    string query = "INSERT INTO Employees (FullName, WorkExperience, Salary, ContactDetails) VALUES (NULL, NULL, NULL, NULL); SELECT LAST_INSERT_ID();";
                     using (var cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@FullName", employee.FullName);
-                        cmd.Parameters.AddWithValue("@WorkExperience", employee.WorkExperience);
-                        cmd.Parameters.AddWithValue("@Salary", employee.Salary);
-                        cmd.Parameters.AddWithValue("@ContactDetails", employee.ContactDetails);
-                        cmd.ExecuteNonQuery();
+                        return Convert.ToInt32(cmd.ExecuteScalar());
                     }
-                    return true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка при добавлении сотрудника: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return false;
+                    return -1;
                 }
             }
         }
