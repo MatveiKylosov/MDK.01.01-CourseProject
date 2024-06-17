@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf;
 using MDK._01._01_CourseProject.Models;
 using MDK._01._01_CourseProject.Repository;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -113,6 +114,8 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                     break;
                 }
             }
+
+            SaleDate.Text = CarSale.SaleDate.Value.ToString("dd.MM.yyyy HH:mm:ss", new CultureInfo("ru-RU"));
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -123,9 +126,23 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                 EditButton.Content = "Сохранить";
                 return;
             }
-            if (string.IsNullOrEmpty(SaleDate.Text) || DateTime.TryParse(SaleDate.Text, new CultureInfo("ru-RU"), DateTimeStyles.None, out DateTime parsedDate)) 
+            string[] russianDateFormats = new string[]
             {
-                MessageBox.Show("Укажите дату продажи.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                "dd.MM.yyyy",
+                "dd.MM.yyyy HH:mm",
+                "dd.MM.yyyy HH:mm:ss",
+                "dd/MM/yyyy",
+                "dd/MM/yyyy HH:mm",
+                "dd/MM/yyyy HH:mm:ss",
+                "dd-MM-yyyy",
+                "dd-MM-yyyy HH:mm",
+                "dd-MM-yyyy HH:mm:ss"
+            };
+
+            if (string.IsNullOrEmpty(SaleDate.Text) ||
+                !DateTime.TryParseExact(SaleDate.Text, russianDateFormats, new CultureInfo("ru-RU"), DateTimeStyles.None, out DateTime parsedDate))
+            {
+                MessageBox.Show("Укажите дату продажи в правильном формате.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (CustomerComboBox.SelectedIndex == -1)
@@ -155,7 +172,11 @@ namespace MDK._01._01_CourseProject.Views.CarSales
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (MessageBox.Show("Продолжить удаление этой записи?", "Внимание!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                RepositoryCarSale.DeleteCarSale(CarSale);
+                main.RemoveCarSale(this);
+            }
         }
     }
 }

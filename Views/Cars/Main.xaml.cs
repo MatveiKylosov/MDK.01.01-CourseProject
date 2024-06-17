@@ -117,9 +117,11 @@ namespace MDK._01._01_CourseProject.Views.Cars
                 worksheet.Cells[1, 6].Value = "Category";
                 worksheet.Cells[1, 7].Value = "Price";
 
-                for (int i = 0; i < _cars.Count; i++)
+                var cars = Cars.ToList();
+
+                for (int i = 0; i < cars.Count; i++)
                 {
-                    var car = _cars[i];
+                    var car = cars[i].Car;
                     worksheet.Cells[i + 2, 1].Value = car.CarID;
                     worksheet.Cells[i + 2, 2].Value = car.CarName;
                     worksheet.Cells[i + 2, 3].Value = car.BrandID;

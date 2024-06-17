@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="MDK._01._01_CourseProject.Views.CarSales.CarSaleUserControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.CarSales"
-             mc:Ignorable="d">
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.CarSales"
+       mc:Ignorable="d">
     <Grid Background="#02343F">
         <Image Grid.Row="0" Grid.Column="0" Width="40px" Height="40px" Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
@@ -20,7 +20,7 @@
                 </Grid.Effect>
 
                 <Label Content="Дата продажи:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <DatePicker x:Name="SaleDate" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+                <DatePicker x:Name="SaleDate" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
             <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC">
@@ -29,7 +29,7 @@
                 </Grid.Effect>
 
                 <Label Content="Сотрудник:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <ComboBox x:Name="EmployeeComboBox" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+                <ComboBox x:Name="EmployeeComboBox" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
             <Grid Margin="10" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="1">
@@ -38,7 +38,7 @@
                 </Grid.Effect>
 
                 <Label Content="Машина:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <ComboBox x:Name="CarComboBox" Text="ПивЗавод" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+                <ComboBox x:Name="CarComboBox" Text="ПивЗавод" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
             <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="1">
@@ -47,7 +47,7 @@
                 </Grid.Effect>
 
                 <Label Content="Клиент:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
-                <ComboBox x:Name="CustomerComboBox" Background="#02343F" Foreground="#F0EDCC" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+                <ComboBox x:Name="CustomerComboBox" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
             <Button x:Name="DeleteButton" Content="Удалить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10, 145, 85, 10" Grid.Column="1" Click="DeleteButton_Click"/>

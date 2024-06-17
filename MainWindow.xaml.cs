@@ -26,6 +26,7 @@ namespace MDK._01._01_CourseProject
             InitializeComponent();
             Frame.Navigate(new Views.Brands.Main(Repository.RepositoryBrand.GetBrands()));
             Frame.Navigate(new Views.Cars.Main(Repository.RepositoryCar.GetCars()));
+            Frame.Navigate(new Views.CarSales.Main(Repository.RepositoryCarSale.GetCarSales()));
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         }
     }

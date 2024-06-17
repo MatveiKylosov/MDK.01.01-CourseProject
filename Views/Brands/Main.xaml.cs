@@ -112,10 +112,11 @@ namespace MDK._01._01_CourseProject.Views.Brands
                     worksheet.Cells[1, i + 1].Value = headers[i];
                 }
 
+                var brands = Brands.ToList();
                 // Заполнение данных брендов
-                for (int i = 0; i < _brands.Count; i++)
+                for (int i = 0; i < Brands.Count; i++)
                 {
-                    var brand = _brands[i];
+                    var brand = brands[i].brand;
                     worksheet.Cells[i + 2, 1].Value = brand.BrandID;
                     worksheet.Cells[i + 2, 2].Value = brand.BrandName;
                     worksheet.Cells[i + 2, 3].Value = brand.Country;
