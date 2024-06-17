@@ -154,17 +154,14 @@ namespace MDK._01._01_CourseProject.Views.Cars
             };
 
             filterUse = filter.ShowDialog();
-            if (filterUse)
-            {
-                selectedBrandID = filter.SelectedBrandID;
-                enteredFirstDate = filter.EnteredFirstDate;
-                enteredSecondDate = filter.EnteredSecondDate;
-                enteredFirstPrice = filter.EnteredFirstPrice;
-                enteredSecondPrice = filter.EnteredSecondPrice;
-                selectedColor = filter.SelectedColor;
-                selectedCategory = filter.SelectedCategory;
-                InitializeCars();
-            }
+            selectedBrandID = filter.SelectedBrandID;
+            enteredFirstDate = filter.EnteredFirstDate;
+            enteredSecondDate = filter.EnteredSecondDate;
+            enteredFirstPrice = filter.EnteredFirstPrice;
+            enteredSecondPrice = filter.EnteredSecondPrice;
+            selectedColor = filter.SelectedColor;
+            selectedCategory = filter.SelectedCategory;
+            InitializeCars();
         }
     }
 }

@@ -123,7 +123,7 @@ namespace MDK._01._01_CourseProject.Views.Cars
         // Переключение состояния контролов фильтра
         private void ToggleFilterControls(bool isEnabled)
         {
-            SecondDate.IsEnabled = FirstDate.IsEnabled = ColorComboBox.IsEnabled = CategoryComboBox.IsEnabled = FirtPrice.IsEnabled = SecondPrice.IsEnabled = isEnabled;
+            BrandComboBox.IsEnabled = SecondDate.IsEnabled = FirstDate.IsEnabled = ColorComboBox.IsEnabled = CategoryComboBox.IsEnabled = FirtPrice.IsEnabled = SecondPrice.IsEnabled = isEnabled;
         }
     }
 }
