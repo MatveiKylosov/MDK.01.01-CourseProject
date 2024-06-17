@@ -97,12 +97,43 @@ namespace MDK._01._01_CourseProject.Repository
             }
         }
 
-        public static bool DeleteCustomer(int customerID)
+        public static bool DeleteCustomer(Customer customer)
         {
             using (var connection = new MySqlConnection(Config.connectionString))
             {
                 try
                 {
+                    int customerID = customer.CustomerID;
+                    connection.Open();
+                    string updateCarSalesQuery = "UPDATE CarSales SET CustomerID=NULL WHERE CustomerID=@CustomerID";
+                    using (var cmd = new MySqlCommand(updateCarSalesQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@CustomerID", customerID);
+                        cmd.ExecuteNonQuery();
+                    }
+                    string deleteCustomerQuery = "DELETE FROM Customers WHERE CustomerID=@CustomerID";
+                    using (var cmd = new MySqlCommand(deleteCustomerQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@CustomerID", customerID);
+                        cmd.ExecuteNonQuery();
+                    }
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при удалении клиента: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+        }
+
+        public static bool DeleteAllEntries(Customer customer)
+        {
+            using (var connection = new MySqlConnection(Config.connectionString))
+            {
+                try
+                {
+                    int customerID = customer.CustomerID;
                     connection.Open();
                     string deleteCarSalesQuery = "DELETE FROM CarSales WHERE CustomerID=@CustomerID";
                     using (var cmd = new MySqlCommand(deleteCarSalesQuery, connection))
@@ -120,7 +151,7 @@ namespace MDK._01._01_CourseProject.Repository
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка при удалении клиента: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Ошибка при удалении клиента и связанных записей: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
             }

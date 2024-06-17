@@ -92,12 +92,43 @@ namespace MDK._01._01_CourseProject.Repository
             }
         }
 
-        public static bool DeleteEmployee(int employeeID)
+        public static bool DeleteEmployee(Employee employee)
         {
             using (var connection = new MySqlConnection(Config.connectionString))
             {
                 try
                 {
+                    int employeeID = employee.EmployeeID;
+                    connection.Open();
+                    string updateCarSalesQuery = "UPDATE CarSales SET EmployeeID=NULL WHERE EmployeeID=@EmployeeID";
+                    using (var cmd = new MySqlCommand(updateCarSalesQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
+                        cmd.ExecuteNonQuery();
+                    }
+                    string deleteEmployeeQuery = "DELETE FROM Employees WHERE EmployeeID=@EmployeeID";
+                    using (var cmd = new MySqlCommand(deleteEmployeeQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
+                        cmd.ExecuteNonQuery();
+                    }
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при удалении сотрудника: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+        }
+
+        public static bool DeleteAllEntries(Employee employee)
+        {
+            using (var connection = new MySqlConnection(Config.connectionString))
+            {
+                try
+                {
+                    int employeeID = employee.EmployeeID;
                     connection.Open();
                     string deleteCarSalesQuery = "DELETE FROM CarSales WHERE EmployeeID=@EmployeeID";
                     using (var cmd = new MySqlCommand(deleteCarSalesQuery, connection))
@@ -115,7 +146,7 @@ namespace MDK._01._01_CourseProject.Repository
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка при удалении сотрудника: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Ошибка при удалении сотрудника и связанных записей: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
             }

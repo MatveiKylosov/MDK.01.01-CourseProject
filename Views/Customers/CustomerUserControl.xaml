@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="MDK._01._01_CourseProject.Views.Customers.CustomerUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.Customers"
+             mc:Ignorable="d" >
+    <Grid Background="#02343F">
+        <Image Grid.Row="0" Grid.Column="0" Width="40px" Height="40px" Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+        <Grid Margin="40, 0, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Margin="10" Height="60" VerticalAlignment="Top" Background="#F0EDCC">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.1"/>
+                </Grid.Effect>
+
+                <Label Content="ФИО:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <TextBox x:Name="FullName"  VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+            </Grid>
+
+
+            <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="0">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.1"/>
+                </Grid.Effect>
+
+                <Label Content="Паспортные данные:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <TextBox x:Name="PassportData"  VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+            </Grid>
+
+            <Grid Margin="10" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="1">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.1"/>
+                </Grid.Effect>
+
+                <Label Content="Адрес:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <TextBox x:Name="Address"  VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+            </Grid>
+
+            <Grid Margin="10, 80, 10, 0" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="1">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.1"/>
+                </Grid.Effect>
+
+                <Label Content="День рождение:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <DatePicker x:Name="BirthDate"  VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+            </Grid>
+
+            <Grid Margin="10, 150, 10, 10" Height="60" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="0">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.1"/>
+                </Grid.Effect>
+
+                <Label Content="Контактные данные:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <TextBox x:Name="ContactDetails"  VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
+            </Grid>
+
+            <Grid Margin="10, 150, 10, 0" Height="30" VerticalAlignment="Top" Background="#F0EDCC" Grid.Column="1">
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.1"/>
+                </Grid.Effect>
+
+                <CheckBox x:Name="Gender" Content="Мужской пол" VerticalAlignment="Top" Margin="10, 8, 10, 0" Foreground="#02343F"/>
+            </Grid>
+
+            <Button x:Name="DeleteButton" Content="Удалить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10, 185, 85, 0" Grid.Column="1" Click="DeleteButton_Click"/>
+            <Button x:Name="EditButton" Content="Изменить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 185, 10, 0" Grid.Column="1" Click="EditButton_Click"/>
+        </Grid>
+    </Grid>
+</UserControl>

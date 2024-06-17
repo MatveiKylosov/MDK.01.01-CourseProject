@@ -127,9 +127,9 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                     var carSale = carSales[i].CarSale;
                     worksheet.Cells[i + 2, 1].Value = carSale.SaleID;
                     worksheet.Cells[i + 2, 2].Value = carSale.SaleDate;
-                    worksheet.Cells[i + 2, 3].Value = carSale.EmployeeID;
-                    worksheet.Cells[i + 2, 4].Value = carSale.CarID;
-                    worksheet.Cells[i + 2, 5].Value = carSale.CustomerID;
+                    worksheet.Cells[i + 2, 3].Value = RepositoryEmployee.GetEmployees().FirstOrDefault(x => x.EmployeeID == carSale.EmployeeID).FullName;
+                    worksheet.Cells[i + 2, 4].Value = RepositoryCar.GetCars().FirstOrDefault(x => x.CarID == carSale.CarID).CarName;
+                    worksheet.Cells[i + 2, 5].Value = RepositoryCustomer.GetCustomers().FirstOrDefault(x => x.CustomerID == carSale.CustomerID).FullName;
                 }
 
                 // Сохранение в файл

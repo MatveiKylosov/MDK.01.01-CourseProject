@@ -111,7 +111,7 @@ namespace MDK._01._01_CourseProject.Views.Cars
                 var worksheet = package.Workbook.Worksheets.Add("Cars");
                 worksheet.Cells[1, 1].Value = "CarID";
                 worksheet.Cells[1, 2].Value = "CarName";
-                worksheet.Cells[1, 3].Value = "BrandID";
+                worksheet.Cells[1, 3].Value = "Brand";
                 worksheet.Cells[1, 4].Value = "YearOfProduction";
                 worksheet.Cells[1, 5].Value = "Color";
                 worksheet.Cells[1, 6].Value = "Category";
@@ -124,7 +124,7 @@ namespace MDK._01._01_CourseProject.Views.Cars
                     var car = cars[i].Car;
                     worksheet.Cells[i + 2, 1].Value = car.CarID;
                     worksheet.Cells[i + 2, 2].Value = car.CarName;
-                    worksheet.Cells[i + 2, 3].Value = car.BrandID;
+                    worksheet.Cells[i + 2, 3].Value = RepositoryBrand.GetBrands().FirstOrDefault(x => x.BrandID == car.BrandID).BrandName;
                     worksheet.Cells[i + 2, 4].Value = car.YearOfProduction;
                     worksheet.Cells[i + 2, 5].Value = car.Color;
                     worksheet.Cells[i + 2, 6].Value = car.Category;

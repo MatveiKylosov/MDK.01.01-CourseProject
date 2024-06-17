@@ -1,0 +1,32 @@
+﻿<Window x:Class="MDK._01._01_CourseProject.Views.Customers.Filter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.Customers"
+        mc:Ignorable="d"
+        Title="Filter">
+    <Grid Background="#F0EDCC">
+        <StackPanel Background="#02343F" Margin="15">
+            <TextBlock Text="ФИО:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <TextBox x:Name="FullNameTextBox" Width="230" Margin="10,15,10,0"/>
+            <TextBlock Text="Данные паспорта:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <TextBox x:Name="PassportDataTextBox" Width="230" Margin="10,15,10,0"/>
+            <TextBlock Text="Адрес:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <TextBox x:Name="AddressTextBox" Width="230" Margin="10,15,10,0"/>
+            <TextBlock Text="Дата рождения от:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <DatePicker x:Name="BirthDateFrom" Width="230" Margin="10,15,10,0"/>
+            <TextBlock Text="Дата рождения до:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <DatePicker x:Name="BirthDateTo" Width="230" Margin="10,15,10,0"/>
+            <TextBlock Text="Пол:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <ComboBox x:Name="GenderComboBox" Width="230" Margin="10,15,10,0"/>
+            <TextBlock Text="Контактные данные:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <TextBox x:Name="ContactDetailsTextBox" Width="230" Margin="10,15,10,0"/>
+            <CheckBox x:Name="ActiveFilter" Content="Использовать фильтр" Margin="20,10,0,0" FontSize="16px" Foreground="White" FontWeight="Bold" Click="ActiveFilter_Checked" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,30">
+                <Button Content="Применить" Background="#F0EDCC" Foreground="#02343F" Height="30" Width="80" Margin="0, 0, 10, 0" Grid.Column="1" Click="Apply_Click"/>
+                <Button Content="Отменить" Background="#F0EDCC" Foreground="#02343F" Height="30" Width="80" Margin="0, 0, 0, 0" Grid.Column="1" Click="Cancel_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
