@@ -56,7 +56,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
         // Обработчик нажатия на кнопку "Применить"
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            DialogResult = ActiveFilter.IsChecked.Value;
             Close();
         }
 

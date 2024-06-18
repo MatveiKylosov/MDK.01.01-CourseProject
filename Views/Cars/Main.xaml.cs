@@ -23,15 +23,20 @@ namespace MDK._01._01_CourseProject.Views.Cars
         private string selectedColor = "Не выбран.";
         private string selectedCategory = "Не выбран.";
         private List<Car> _cars;
+        private bool UserMode;
+
         private ObservableCollection<CarUserControl> Cars { get; set; }
 
-        public Main()
+        public Main(bool UserMode = false)
         {
             InitializeComponent();
             _cars = RepositoryCar.GetCars();
             Cars = new ObservableCollection<CarUserControl>();
+            this.UserMode = UserMode;
             InitializeCars();
             CarList.ItemsSource = Cars;
+            if(UserMode)
+                AddCar.Visibility = Visibility.Hidden;
         }
 
         // Инициализация списка машин
@@ -55,7 +60,7 @@ namespace MDK._01._01_CourseProject.Views.Cars
             Cars.Clear();
             foreach (var car in filteredCars)
             {
-                Cars.Add(new CarUserControl(car, this));
+                Cars.Add(new CarUserControl(UserMode, car, this));
             }
         }
 
@@ -64,7 +69,7 @@ namespace MDK._01._01_CourseProject.Views.Cars
         {
             var addedCar = new Car() { CarID = RepositoryCar.AddCar() };
             _cars.Add(addedCar);
-            Cars.Add(new CarUserControl(addedCar, this));
+            Cars.Add(new CarUserControl(UserMode,addedCar, this));
         }
 
         // Удаление машины

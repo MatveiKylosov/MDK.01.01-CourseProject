@@ -1,4 +1,5 @@
-﻿using MDK._01._01_CourseProject.Repository;
+﻿using MDK._01._01_CourseProject.Models;
+using MDK._01._01_CourseProject.Repository;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace MDK._01._01_CourseProject.Views.CarSales
     /// </summary>
     public partial class Filter : Window
     {
+        public Customer customer = null;
         public int SelectedBrandID
         {
             get => BrandComboBox.SelectedItem is ComboBoxItem selectedItem ? (int)selectedItem.Tag : -1;
@@ -141,10 +143,8 @@ namespace MDK._01._01_CourseProject.Views.CarSales
             EmployeeComboBox.Items.Clear();
             CustomerComboBox.Items.Clear();
 
-
             BrandComboBox.Items.Add(new ComboBoxItem { Content = "Не выбран.", Tag = -1 });
             EmployeeComboBox.Items.Add(new ComboBoxItem { Content = "Не выбран.", Tag = -1 });
-            CustomerComboBox.Items.Add(new ComboBoxItem { Content = "Не выбран.", Tag = -1 });
 
             foreach (var brand in brands)
             {
@@ -156,10 +156,15 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                 var employeeItem = new ComboBoxItem { Content = employee.FullName, Tag = employee.EmployeeID };
                 EmployeeComboBox.Items.Add(employeeItem);
             }
-            foreach (var customer in customers)
+
+            if (customer != null)
             {
-                var customerItem = new ComboBoxItem { Content = customer.FullName, Tag = customer.CustomerID };
-                CustomerComboBox.Items.Add(customerItem);
+                CustomerComboBox.Items.Add(new ComboBoxItem { Content = "Не выбран.", Tag = -1 });
+                foreach (var customer in customers)
+                {
+                    var customerItem = new ComboBoxItem { Content = customer.FullName, Tag = customer.CustomerID };
+                    CustomerComboBox.Items.Add(customerItem);
+                }
             }
         }
 
@@ -210,7 +215,7 @@ namespace MDK._01._01_CourseProject.Views.CarSales
         // Применение фильтра
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            DialogResult = ActiveFilter.IsChecked.Value;
             Close();
         }
 

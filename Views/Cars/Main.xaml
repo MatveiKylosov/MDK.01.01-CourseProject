@@ -27,7 +27,7 @@
                 <DropShadowEffect Opacity="0.5" BlurRadius="3" ShadowDepth="3"/>
             </Button.Effect>
         </Button>
-        <Button Content="Добавить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Click="AddCar_Click">
+        <Button x:Name="AddCar" Content="Добавить" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Click="AddCar_Click">
             <Button.Effect>
                 <DropShadowEffect Opacity="0.5" BlurRadius="3" ShadowDepth="3"/>
             </Button.Effect>

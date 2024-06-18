@@ -25,16 +25,24 @@ namespace MDK._01._01_CourseProject.Views.CarSales
         private int SelectedCustomerID = -1;
         private DateTime? EnteredFirstSaleDate;
         private DateTime? EnteredSecondSaleDate;
+        Customer customer = null;
 
         private List<CarSale> _carSales;
         private ObservableCollection<CarSaleUserControl> CarSale { get; set; }
-        public Main()
+        public Main(Customer customer = null)
         {
             InitializeComponent();
             _carSales = RepositoryCarSale.GetCarSales();
             CarSale = new ObservableCollection<CarSaleUserControl>();
-            InitializeCarSales();
             CarSaleList.ItemsSource = CarSale;
+
+            if(null != customer)
+            {
+                AddCarSale.Visibility = Visibility.Hidden;
+                this.customer = customer;
+            }
+
+            InitializeCarSales();
         }
 
         public void InitializeCarSales()
@@ -42,20 +50,50 @@ namespace MDK._01._01_CourseProject.Views.CarSales
             CarSale.Clear();
             var filteredCarSales = _carSales;
 
+            if(customer != null)
+                filteredCarSales = _carSales.Where(x => x.CustomerID == customer.CustomerID).ToList();
+
             if (filterUse)
             {
-                filteredCarSales = filteredCarSales.Where(carSale =>
-                    (SelectedCarID == -1 || carSale.CarID == SelectedCarID) &&
-                    (SelectedEmployeeID == -1 || carSale.EmployeeID == SelectedEmployeeID) &&
-                    (SelectedCustomerID == -1 || carSale.CustomerID == SelectedCustomerID) &&
-                    (EnteredFirstSaleDate == null || carSale.SaleDate >= EnteredFirstSaleDate) &&
-                    (EnteredSecondSaleDate == null || carSale.SaleDate <= EnteredSecondSaleDate)
-                ).ToList();
+                filteredCarSales = filteredCarSales.Where(IsCarSaleMatchingFilters).ToList();
             }
 
             foreach (var carSale in filteredCarSales)
-                CarSale.Add(new CarSaleUserControl(carSale, this));
+                CarSale.Add(new CarSaleUserControl((customer != null),carSale, this));
+        }
 
+        private bool IsCarSaleMatchingFilters(CarSale carSale)
+        {
+            var Cars = RepositoryCar.GetCars().Where(x => x.BrandID == SelectedBrandID);
+            if(SelectedBrandID != -1 && !Cars.Any(x => x.CarID == carSale.CarID))
+                return false;
+
+            if (SelectedCarID != -1 && carSale.CarID != SelectedCarID)
+            {
+                return false;
+            }
+
+            if (SelectedEmployeeID != -1 && carSale.EmployeeID != SelectedEmployeeID)
+            {
+                return false;
+            }
+
+            if (SelectedCustomerID != -1 && carSale.CustomerID != SelectedCustomerID)
+            {
+                return false;
+            }
+
+            if (EnteredFirstSaleDate != null && carSale.SaleDate < EnteredFirstSaleDate)
+            {
+                return false;
+            }
+
+            if (EnteredSecondSaleDate != null && carSale.SaleDate > EnteredSecondSaleDate)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public void RemoveCarSale(CarSaleUserControl carSaleUserControl)
@@ -69,7 +107,8 @@ namespace MDK._01._01_CourseProject.Views.CarSales
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            _carSales = RepositoryCarSale.GetCarSales();
+            _carSales = customer == null ? RepositoryCarSale.GetCarSales() : 
+                                           RepositoryCarSale.GetCarSales().Where(x => x.CustomerID == customer.CustomerID).ToList();
             InitializeCarSales();
         }
 
@@ -146,6 +185,7 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                 SelectedCustomerID = this.SelectedCustomerID,
                 EnteredFirstSaleDate = this.EnteredFirstSaleDate,
                 EnteredSecondSaleDate = this.EnteredSecondSaleDate,
+                customer = this.customer
             };
 
             filterUse = filter.ShowDialog();
@@ -163,7 +203,7 @@ namespace MDK._01._01_CourseProject.Views.CarSales
         {
             var addedCarSale = new CarSale() { SaleID = RepositoryCarSale.AddCarSale() };
             _carSales.Add(addedCarSale);
-            CarSale.Add(new CarSaleUserControl(addedCarSale, this));
+            CarSale.Add(new CarSaleUserControl((customer != null), addedCarSale, this));
         }
     }
 }

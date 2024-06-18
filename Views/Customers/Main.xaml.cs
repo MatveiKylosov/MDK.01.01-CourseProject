@@ -23,15 +23,20 @@ namespace MDK._01._01_CourseProject.Views.Customers
         private bool? selectedGender;
         private string enteredContactDetails;
         private List<Customer> _customers;
+        private Customer customer;
         private ObservableCollection<CustomerUserControl> Customers { get; set; }
 
-        public Main()
+        public Main(Customer customer = null)
         {
             InitializeComponent();
             _customers = RepositoryCustomer.GetCustomers();
             Customers = new ObservableCollection<CustomerUserControl>();
-            InitializeCustomers();
             CarSaleList.ItemsSource = Customers;
+            this.customer = customer;
+            if(customer != null)
+                ExportCustomers.Visibility = AddCustomers.Visibility = FilterCustomers.Visibility = UpdateCustomers.Visibility = Visibility.Hidden;
+
+            InitializeCustomers();
         }
 
         private void FilterCustomers_Click(object sender, RoutedEventArgs e)
@@ -64,6 +69,12 @@ namespace MDK._01._01_CourseProject.Views.Customers
             Customers.Clear();
             var filteredCustomers = _customers;
 
+            if(customer != null)
+            {
+                Customers.Add(new CustomerUserControl(true, customer, this));
+                return;
+            }
+
             if (filterUse)
             {
                 filteredCustomers = filteredCustomers.Where(customer =>
@@ -78,16 +89,14 @@ namespace MDK._01._01_CourseProject.Views.Customers
             }
 
             foreach (var customer in filteredCustomers)
-            {
-                Customers.Add(new CustomerUserControl(customer, this));
-            }
+                Customers.Add(new CustomerUserControl((customer != null),customer, this));
         }
 
         private void AddCustomer_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var addedCustomer = new Customer() { CustomerID = RepositoryCustomer.AddCustomer() };
             _customers.Add(addedCustomer);
-            Customers.Add(new CustomerUserControl(addedCustomer, this));
+            Customers.Add(new CustomerUserControl((customer != null), addedCustomer, this));
         }
 
         public void RemoveCustomer(CustomerUserControl customerControl)

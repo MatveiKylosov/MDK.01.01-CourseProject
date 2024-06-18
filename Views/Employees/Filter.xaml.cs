@@ -81,7 +81,7 @@ namespace MDK._01._01_CourseProject.Views.Employees
 
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            DialogResult = ActiveFilter.IsChecked.Value;
             Close();
         }
 

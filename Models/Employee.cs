@@ -7,5 +7,6 @@
         public int? WorkExperience;
         public decimal? Salary;
         public string ContactDetails;
+        public string Password;
     }
 }

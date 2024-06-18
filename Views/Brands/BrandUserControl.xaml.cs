@@ -30,7 +30,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
             }
         }
 
-        public BrandUserControl(Brand brand, Main main)
+        public BrandUserControl(bool UserMode,Brand brand, Main main)
         {
             InitializeComponent();
             this.brand = brand;
@@ -45,6 +45,8 @@ namespace MDK._01._01_CourseProject.Views.Brands
             Manufacturer.Text = brand.Manufacturer;
             Country.SelectedValue = brand.Country;
 
+            if(UserMode)
+                DeleteButton.Visibility = EditButton.Visibility = Visibility.Hidden;
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)

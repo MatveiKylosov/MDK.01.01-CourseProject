@@ -31,7 +31,7 @@ namespace MDK._01._01_CourseProject.Views.CarSales
             }
         }
 
-        public CarSaleUserControl(CarSale CarSale, Main main)
+        public CarSaleUserControl(bool UserMode, CarSale CarSale, Main main)
         {
             InitializeComponent();
             this.CarSale = CarSale;
@@ -100,6 +100,9 @@ namespace MDK._01._01_CourseProject.Views.CarSales
             }
 
             SaleDate.Text = CarSale.SaleDate.Value.ToString("dd.MM.yyyy HH:mm:ss", new CultureInfo("ru-RU"));
+
+            if (UserMode)
+                DeleteButton.Visibility = EditButton.Visibility = Visibility.Hidden;
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)

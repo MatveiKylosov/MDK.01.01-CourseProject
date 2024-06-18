@@ -12,17 +12,27 @@
                 <DropShadowEffect Opacity="0.1"/>
             </Grid.Effect>
 
-            <Label x:Name="TableName" Content="Таблица: Сотрудники" VerticalAlignment="Center" Margin="15,0,0,0" FontWeight="Bold" Foreground="#02343F"/>
+            <Label x:Name="TableName" Content="Таблица:" VerticalAlignment="Center" Margin="15,0,0,0" FontWeight="Bold" Foreground="#02343F"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                 <Button Margin="5" Content="Марки" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenBrands_Click"/>
                 <Button Margin="5" Content="Машины" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenCars_Click"/>
                 <Button Margin="5" Content="Продажи" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenSales_Click"/>
                 <Button Margin="5" Content="Клиенты" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenCustomers_Click"/>
-                <Button Margin="5" Content="Сотрудники" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenEmployees_Click"/>
+                <Button x:Name="OpenEmployees" Margin="5" Content="Сотрудники" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenEmployees_Click"/>
             </StackPanel>
         </Grid>
 
         <Frame x:Name="Frame" NavigationUIVisibility="Hidden" Margin="0,55,0,0"/>
+
+        <Grid Background="#02343F" x:Name="AuthGrid">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Content="Логин" Foreground="#F0EDCC"/>
+                <TextBox x:Name="Login" Height="25" Width="200" Margin="0,5,0,0"/>
+                <Label Content="Пароль" Foreground="#F0EDCC"/>
+                <PasswordBox x:Name="Password" Height="25" Width="200" Margin="0,5,0,0"/>
+                <Button Background="#F0EDCC" Foreground="#02343F" Content="Войти" Height="25" Width="200" Margin="0,5,0,0" Click="Auth_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

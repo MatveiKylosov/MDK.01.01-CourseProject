@@ -11,5 +11,6 @@ namespace MDK._01._01_CourseProject.Models
         public DateTime? BirthDate;
         public bool? Gender;
         public string ContactDetails;
+        public string Password;
     }
 }

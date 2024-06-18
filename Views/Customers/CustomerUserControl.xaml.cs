@@ -9,37 +9,47 @@ namespace MDK._01._01_CourseProject.Views.Customers
 {
     public partial class CustomerUserControl : UserControl
     {
+        bool UserMode;
         public Customer Customer;
         Main main;
         bool edit
         {
-            get { return FullName.IsEnabled; }
+            get { return ContactDetails.IsEnabled; }
             set
             {
-                FullName.IsEnabled = value;
-                PassportData.IsEnabled = value;
-                Address.IsEnabled = value;
-                BirthDate.IsEnabled = value;
+                if (!UserMode)
+                {
+                    FullName.IsEnabled = value;
+                    PassportData.IsEnabled = value;
+                    Address.IsEnabled = value;
+                    BirthDate.IsEnabled = value;
+                    Gender.IsEnabled = value;
+                }
                 ContactDetails.IsEnabled = value;
-                Gender.IsEnabled = value;
                 DeleteButton.IsEnabled = value;
                 EditButton.Content = value ? "Сохранить" : "Изменить";
             }
         }
 
-        public CustomerUserControl(Customer customer, Main main)
+        public CustomerUserControl(bool UserMode, Customer customer, Main main)
         {
             InitializeComponent();
             this.Customer = customer;
             this.main = main;
             this.edit = false;
             if (customer == null) return;
+
             FullName.Text = customer.FullName;
             PassportData.Text = customer.PassportData;
             Address.Text = customer.Address;
             BirthDate.SelectedDate = customer.BirthDate;
             ContactDetails.Text = customer.ContactDetails;
             Gender.IsChecked = customer.Gender;
+
+            if (UserMode)
+                DeleteButton.Visibility = Visibility.Hidden;
+
+            this.UserMode = UserMode;
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)

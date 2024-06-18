@@ -30,7 +30,8 @@ namespace MDK._01._01_CourseProject.Repository
                                     FullName = reader.IsDBNull(reader.GetOrdinal("FullName")) ? null : reader.GetString("FullName"),
                                     WorkExperience = reader.IsDBNull(reader.GetOrdinal("WorkExperience")) ? (int?)null : reader.GetInt32("WorkExperience"),
                                     Salary = reader.IsDBNull(reader.GetOrdinal("Salary")) ? (decimal?)null : reader.GetDecimal("Salary"),
-                                    ContactDetails = reader.IsDBNull(reader.GetOrdinal("ContactDetails")) ? null : reader.GetString("ContactDetails")
+                                    ContactDetails = reader.IsDBNull(reader.GetOrdinal("ContactDetails")) ? null : reader.GetString("ContactDetails"),
+                                    Password = reader.IsDBNull(reader.GetOrdinal("Password")) ? null : reader.GetString("Password")
                                 });
                             }
                         }

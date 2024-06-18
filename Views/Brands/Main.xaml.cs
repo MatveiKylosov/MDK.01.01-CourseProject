@@ -19,19 +19,24 @@ namespace MDK._01._01_CourseProject.Views.Brands
         private string _selectedManufacturer = "Не выбран.";
         private string _selectedAddress = "Не выбран.";
         private bool _filterUse = false;
+        private bool UserMode = false;
 
         // Список всех брендов и коллекция для отображения на UI
         private List<Brand> _brands;
         private ObservableCollection<BrandUserControl> Brands { get; set; }
 
         // Конструктор страницы, инициализация компонентов и списков
-        public Main()
+        public Main(bool UserMode = false)
         {
             InitializeComponent();
             _brands = RepositoryBrand.GetBrands();
             Brands = new ObservableCollection<BrandUserControl>();
+            this.UserMode = UserMode;
             InitializeBrands();
             BrandList.ItemsSource = Brands;
+
+            if(UserMode)
+                AddBrand.Visibility = Visibility.Hidden;
         }
 
         // Метод для инициализации брендов, с учетом фильтрации
@@ -44,7 +49,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
             Brands.Clear();
             foreach (var brand in filteredBrands)
             {
-                Brands.Add(new BrandUserControl(brand, this));
+                Brands.Add(new BrandUserControl(UserMode, brand, this));
             }
         }
 
@@ -72,7 +77,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
         {
             var addedBrand = new Brand() { BrandID = RepositoryBrand.AddBrand() };
             _brands.Add(addedBrand);
-            Brands.Add(new BrandUserControl(addedBrand, this));
+            Brands.Add(new BrandUserControl(UserMode,addedBrand, this));
         }
 
         // Метод для экспорта брендов в Excel

@@ -27,7 +27,7 @@ namespace MDK._01._01_CourseProject.Views.Cars
             }
         }
 
-        public CarUserControl(Car car, Main main)
+        public CarUserControl(bool UserMode, Car car, Main main)
         {
             InitializeComponent();
             this.Car = car;
@@ -63,6 +63,9 @@ namespace MDK._01._01_CourseProject.Views.Cars
                     break;
                 }
             }
+
+            if (UserMode)
+                DeleteButton.Visibility = EditButton.Visibility = Visibility.Hidden;
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
