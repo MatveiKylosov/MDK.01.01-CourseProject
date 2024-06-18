@@ -21,11 +21,13 @@
                 <Button Margin="5" Content="Клиенты" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenCustomers_Click"/>
                 <Button x:Name="OpenEmployees" Margin="5" Content="Сотрудники" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1" Click="OpenEmployees_Click"/>
             </StackPanel>
+            
+            <Button Margin="0,0,15,0" Content="Назад" Background="#F0EDCC" Foreground="#02343F" Height="25" Width="70" Grid.Column="1" Click="ReturnAuth_Click" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         </Grid>
 
         <Frame x:Name="Frame" NavigationUIVisibility="Hidden" Margin="0,55,0,0"/>
 
-        <Grid Background="#02343F" x:Name="AuthGrid">
+        <Grid Background="#02343F" x:Name="AuthGrid" Visibility="Hidden">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Label Content="Логин" Foreground="#F0EDCC"/>
                 <TextBox x:Name="Login" Height="25" Width="200" Margin="0,5,0,0"/>

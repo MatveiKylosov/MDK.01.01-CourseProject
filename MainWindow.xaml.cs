@@ -70,5 +70,11 @@ namespace MDK._01._01_CourseProject
 
             AuthGrid.Visibility = Visibility.Hidden;
         }
+
+        private void ReturnAuth_Click(object sender, RoutedEventArgs e)
+        {
+            customer = null;
+            AuthGrid.Visibility = Visibility.Visible;
+        }
     }
 }
