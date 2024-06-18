@@ -114,13 +114,13 @@ namespace MDK._01._01_CourseProject.Views.Cars
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Cars");
-                worksheet.Cells[1, 1].Value = "CarID";
-                worksheet.Cells[1, 2].Value = "CarName";
-                worksheet.Cells[1, 3].Value = "Brand";
-                worksheet.Cells[1, 4].Value = "YearOfProduction";
-                worksheet.Cells[1, 5].Value = "Color";
-                worksheet.Cells[1, 6].Value = "Category";
-                worksheet.Cells[1, 7].Value = "Price";
+                worksheet.Cells[1, 1].Value = "№";
+                worksheet.Cells[1, 2].Value = "Название машины";
+                worksheet.Cells[1, 3].Value = "Бренд";
+                worksheet.Cells[1, 4].Value = "Год производства";
+                worksheet.Cells[1, 5].Value = "Цвет";
+                worksheet.Cells[1, 6].Value = "Категория";
+                worksheet.Cells[1, 7].Value = "Цена";
 
                 var cars = Cars.ToList();
 
@@ -138,7 +138,7 @@ namespace MDK._01._01_CourseProject.Views.Cars
                     worksheet.Cells[i + 2, 6].Value = car.Category;
                     worksheet.Cells[i + 2, 7].Value = car.Price;
                 }
-
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
                 package.SaveAs(new FileInfo(filePath));
             }
         }

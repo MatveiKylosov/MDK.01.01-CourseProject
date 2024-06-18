@@ -5,6 +5,7 @@ using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -142,11 +143,11 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                 var worksheet = package.Workbook.Worksheets.Add("CarSales");
 
                 // Заголовки столбцов
-                worksheet.Cells[1, 1].Value = "SaleID";
-                worksheet.Cells[1, 2].Value = "SaleDate";
-                worksheet.Cells[1, 3].Value = "EmployeeID";
-                worksheet.Cells[1, 4].Value = "CarID";
-                worksheet.Cells[1, 5].Value = "CustomerID";
+                worksheet.Cells[1, 1].Value = "№";
+                worksheet.Cells[1, 2].Value = "Дата продажи";
+                worksheet.Cells[1, 3].Value = "Сотрудник";
+                worksheet.Cells[1, 4].Value = "Машина";
+                worksheet.Cells[1, 5].Value = "Клиент";
 
                 var carSales = CarSale.ToList();
 
@@ -158,9 +159,9 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                     var FindCar = RepositoryCar.GetCars().FirstOrDefault(x => x.CarID == carSale.CarID);
                     var FindCustomer = RepositoryCustomer.GetCustomers().FirstOrDefault(x => x.CustomerID == carSale.CustomerID);
                     worksheet.Cells[i + 2, 1].Value = carSale.SaleID;
-                    worksheet.Cells[i + 2, 2].Value = carSale.SaleDate;
 
-
+                    if (carSale.SaleDate.HasValue)
+                        worksheet.Cells[i + 2, 2].Value = carSale.SaleDate.Value.ToString("dd.MM.yyyy HH:mm:ss", new CultureInfo("ru-RU"));
                     if (FindEmployee != null)
                         worksheet.Cells[i + 2, 3].Value = FindEmployee.FullName;
                     if (FindCar != null)
@@ -169,6 +170,7 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                         worksheet.Cells[i + 2, 5].Value = FindCustomer.FullName;
                 }
 
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
                 // Сохранение в файл
                 FileInfo fileInfo = new FileInfo(filePath);
                 package.SaveAs(fileInfo);

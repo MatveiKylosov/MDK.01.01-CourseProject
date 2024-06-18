@@ -109,7 +109,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Бренды");
-                var headers = new[] { "BrandID", "BrandName", "Country", "Manufacturer", "Address" };
+                var headers = new[] { "№", "Название бренда", "Старана", "Завод", "Адрес" };
 
                 // Заполнение заголовков
                 for (int i = 0; i < headers.Length; i++)
@@ -128,7 +128,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
                     worksheet.Cells[i + 2, 4].Value = brand.Manufacturer;
                     worksheet.Cells[i + 2, 5].Value = brand.Address;
                 }
-
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
                 package.SaveAs(new FileInfo(filePath));
             }
         }

@@ -5,6 +5,7 @@ using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -145,12 +146,13 @@ namespace MDK._01._01_CourseProject.Views.Customers
                 var worksheet = package.Workbook.Worksheets.Add("Customers");
 
                 // Заголовки столбцов
-                worksheet.Cells[1, 1].Value = "FullName";
-                worksheet.Cells[1, 2].Value = "PassportData";
-                worksheet.Cells[1, 3].Value = "Address";
-                worksheet.Cells[1, 4].Value = "BirthDate";
-                worksheet.Cells[1, 5].Value = "Gender";
-                worksheet.Cells[1, 6].Value = "ContactDetails";
+                worksheet.Cells[1, 1].Value = "№";
+                worksheet.Cells[1, 2].Value = "ФИО";
+                worksheet.Cells[1, 3].Value = "Паспортные данные";
+                worksheet.Cells[1, 4].Value = "Адрес";
+                worksheet.Cells[1, 5].Value = "День рождение";
+                worksheet.Cells[1, 6].Value = "Пол";
+                worksheet.Cells[1, 7].Value = "Контактные данные";
 
                 var customers = Customers.ToList();
 
@@ -158,18 +160,27 @@ namespace MDK._01._01_CourseProject.Views.Customers
                 for (int i = 0; i < customers.Count; i++)
                 {
                     var customer = customers[i].Customer;
-                    worksheet.Cells[i + 2, 1].Value = customer.FullName;
-                    worksheet.Cells[i + 2, 2].Value = customer.PassportData;
-                    worksheet.Cells[i + 2, 3].Value = customer.Address;
-                    worksheet.Cells[i + 2, 4].Value = customer.BirthDate;
-                    worksheet.Cells[i + 2, 5].Value = customer.Gender.Value ? "Male" : "Female";
-                    worksheet.Cells[i + 2, 6].Value = customer.ContactDetails;
+                    worksheet.Cells[i + 2, 1].Value = customer.CustomerID;
+                    worksheet.Cells[i + 2, 2].Value = customer.FullName;
+                    worksheet.Cells[i + 2, 3].Value = customer.PassportData;
+                    worksheet.Cells[i + 2, 4].Value = customer.Address;
+
+                    if (customer.BirthDate.HasValue)
+                        worksheet.Cells[i + 2, 5].Value = customer.BirthDate.Value.ToString("dd.MM.yyyy HH:mm:ss", new CultureInfo("ru-RU"));
+
+                    if (customer.Gender.HasValue)
+                        worksheet.Cells[i + 2, 6].Value = customer.Gender.Value ? "Мужской" : "Женский";
+
+                    worksheet.Cells[i + 2, 7].Value = customer.ContactDetails;
                 }
+
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
                 // Сохранение в файл
                 FileInfo fileInfo = new FileInfo(filePath);
                 package.SaveAs(fileInfo);
             }
         }
+
     }
 }

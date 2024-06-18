@@ -131,11 +131,11 @@ namespace MDK._01._01_CourseProject.Views.Employees
                 var worksheet = package.Workbook.Worksheets.Add("Employees");
 
                 // Заголовки столбцов
-                worksheet.Cells[1, 1].Value = "EmployeeID";
-                worksheet.Cells[1, 2].Value = "FullName";
-                worksheet.Cells[1, 3].Value = "WorkExperience";
-                worksheet.Cells[1, 4].Value = "Salary";
-                worksheet.Cells[1, 5].Value = "ContactDetails";
+                worksheet.Cells[1, 1].Value = "№";
+                worksheet.Cells[1, 2].Value = "ФИО";
+                worksheet.Cells[1, 3].Value = "Опыт работы";
+                worksheet.Cells[1, 4].Value = "Зарплата";
+                worksheet.Cells[1, 5].Value = "Контактные данные";
 
                 var employees = Employees.ToList();
                 // Заполнение данными
@@ -144,11 +144,16 @@ namespace MDK._01._01_CourseProject.Views.Employees
                     var employee = employees[i].Employee;
                     worksheet.Cells[i + 2, 1].Value = employee.EmployeeID;
                     worksheet.Cells[i + 2, 2].Value = employee.FullName;
-                    worksheet.Cells[i + 2, 3].Value = employee.WorkExperience;
-                    worksheet.Cells[i + 2, 4].Value = employee.Salary;
+
+                    if(employee.WorkExperience.HasValue)
+                        worksheet.Cells[i + 2, 3].Value = employee.WorkExperience.Value;
+
+                    if (employee.Salary.HasValue)
+                        worksheet.Cells[i + 2, 4].Value = employee.Salary.Value;
+
                     worksheet.Cells[i + 2, 5].Value = employee.ContactDetails;
                 }
-
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
                 // Сохранение в файл
                 FileInfo fileInfo = new FileInfo(filePath);
                 package.SaveAs(fileInfo);
