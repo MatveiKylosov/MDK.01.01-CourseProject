@@ -66,7 +66,16 @@ namespace MDK._01._01_CourseProject
                 this.customer = customer;
 
             if (this.customer != null)
+            {
                 OpenEmployees.Height = OpenEmployees.Width = 0;
+                OpenCustomers.Content = "Профиль";
+            }
+            else
+            {
+                OpenEmployees.Height = 25;
+                OpenEmployees.Width = 70;
+                OpenCustomers.Content = "Клиенты";
+            }
 
             AuthGrid.Visibility = Visibility.Hidden;
         }

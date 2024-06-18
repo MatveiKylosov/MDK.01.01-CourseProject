@@ -21,11 +21,13 @@ namespace MDK._01._01_CourseProject.Views.Customers
                 {
                     FullName.IsEnabled = value;
                     PassportData.IsEnabled = value;
-                    Address.IsEnabled = value;
                     BirthDate.IsEnabled = value;
                     Gender.IsEnabled = value;
                 }
+
+                Address.IsEnabled = value;
                 ContactDetails.IsEnabled = value;
+
                 DeleteButton.IsEnabled = value;
                 EditButton.Content = value ? "Сохранить" : "Изменить";
             }
