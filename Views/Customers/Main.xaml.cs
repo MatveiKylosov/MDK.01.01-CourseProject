@@ -33,6 +33,7 @@ namespace MDK._01._01_CourseProject.Views.Customers
             Customers = new ObservableCollection<CustomerUserControl>();
             CarSaleList.ItemsSource = Customers;
             this.customer = customer;
+
             if(customer != null)
                 ExportCustomers.Visibility = AddCustomers.Visibility = FilterCustomers.Visibility = UpdateCustomers.Visibility = Visibility.Hidden;
 
@@ -89,7 +90,7 @@ namespace MDK._01._01_CourseProject.Views.Customers
             }
 
             foreach (var customer in filteredCustomers)
-                Customers.Add(new CustomerUserControl((customer != null),customer, this));
+                Customers.Add(new CustomerUserControl(false,customer, this));
         }
 
         private void AddCustomer_Click(object sender, System.Windows.RoutedEventArgs e)

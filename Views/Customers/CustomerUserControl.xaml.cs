@@ -9,7 +9,7 @@ namespace MDK._01._01_CourseProject.Views.Customers
 {
     public partial class CustomerUserControl : UserControl
     {
-        bool UserMode;
+        bool UserMode = false;
         public Customer Customer;
         Main main;
         bool edit
@@ -37,6 +37,12 @@ namespace MDK._01._01_CourseProject.Views.Customers
             this.Customer = customer;
             this.main = main;
             this.edit = false;
+
+            if (UserMode)
+                DeleteButton.Visibility = Visibility.Hidden;
+
+            this.UserMode = UserMode;
+
             if (customer == null) return;
 
             FullName.Text = customer.FullName;
@@ -45,11 +51,6 @@ namespace MDK._01._01_CourseProject.Views.Customers
             BirthDate.SelectedDate = customer.BirthDate;
             ContactDetails.Text = customer.ContactDetails;
             Gender.IsChecked = customer.Gender;
-
-            if (UserMode)
-                DeleteButton.Visibility = Visibility.Hidden;
-
-            this.UserMode = UserMode;
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
