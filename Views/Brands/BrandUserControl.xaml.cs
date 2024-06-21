@@ -27,6 +27,7 @@ namespace MDK._01._01_CourseProject.Views.Brands
                 Manufacturer.IsEnabled = value;
                 Country.IsEnabled = value;
                 DeleteButton.IsEnabled = value;
+                EditButton.Content = value ? "Сохранить" : "Изменить";
             }
         }
 

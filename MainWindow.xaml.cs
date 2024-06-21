@@ -83,6 +83,7 @@ namespace MDK._01._01_CourseProject
         private void ReturnAuth_Click(object sender, RoutedEventArgs e)
         {
             customer = null;
+            this.Frame.Navigate(null);
             AuthGrid.Visibility = Visibility.Visible;
         }
     }
