@@ -51,7 +51,7 @@ namespace MDK._01._01_CourseProject.Repository
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO CarSales (SaleDate, EmployeeID, CarID, CustomerID) VALUES (NULL, NULL, NULL, NULL); SELECT LAST_INSERT_ID();";
+                    string query = $"INSERT INTO CarSales (SaleDate, EmployeeID, CarID, CustomerID) VALUES ({DateTime.Now.ToString("dd.MM.yyyy")}, NULL, NULL, NULL); SELECT LAST_INSERT_ID();";
                     using (var cmd = new MySqlCommand(query, connection))
                     {
                         return Convert.ToInt32(cmd.ExecuteScalar());

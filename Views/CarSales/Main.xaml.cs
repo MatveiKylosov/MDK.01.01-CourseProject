@@ -203,7 +203,7 @@ namespace MDK._01._01_CourseProject.Views.CarSales
 
         private void AddCarSale_Click(object sender, RoutedEventArgs e)
         {
-            var addedCarSale = new CarSale() { SaleID = RepositoryCarSale.AddCarSale() };
+            var addedCarSale = new CarSale() { SaleID = RepositoryCarSale.AddCarSale(), SaleDate = DateTime.Now };
             _carSales.Add(addedCarSale);
             CarSale.Add(new CarSaleUserControl((customer != null), addedCarSale, this));
         }
