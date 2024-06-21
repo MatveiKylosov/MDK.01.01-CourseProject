@@ -2,6 +2,6 @@
 {
     public class Config
     {
-        static public string connectionString = "server=localhost;database=CarDealership;user=root;";
+        static public string connectionString = "server=localhost;database=CarDealership;user=root;port=3307";
     }
 }

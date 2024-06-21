@@ -1,6 +1,7 @@
 ﻿using MDK._01._01_CourseProject.Models;
 using MDK._01._01_CourseProject.Repository;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -83,12 +84,24 @@ namespace MDK._01._01_CourseProject.Views.Customers
                 MessageBox.Show("Контактные данные не должны быть пустыми.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (!BirthDate.SelectedDate.HasValue) 
+            {
+                MessageBox.Show("Необходимо указать дату рождения.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             Customer.FullName = this.FullName.Text;
             Customer.PassportData = this.PassportData.Text;
             Customer.Address = this.Address.Text;
             Customer.BirthDate = BirthDate.SelectedDate.Value;
+
             Customer.ContactDetails = this.ContactDetails.Text;
-            Customer.Gender = Gender.IsChecked.Value;
+
+            if(Gender.IsChecked.HasValue)
+                Customer.Gender = Gender.IsChecked.Value;
+            else
+                Customer.Gender = false;
+
             RepositoryCustomer.UpdateCustomer(Customer);
             edit = false;
         }

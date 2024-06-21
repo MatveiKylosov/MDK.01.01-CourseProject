@@ -99,7 +99,8 @@ namespace MDK._01._01_CourseProject.Views.CarSales
                 }
             }
 
-            SaleDate.Text = CarSale.SaleDate.Value.ToString("dd.MM.yyyy HH:mm:ss", new CultureInfo("ru-RU"));
+            if(CarSale.SaleDate.HasValue)
+                SaleDate.Text = CarSale.SaleDate.Value.ToString("dd.MM.yyyy HH:mm:ss", new CultureInfo("ru-RU"));
 
             if (UserMode)
                 DeleteButton.Visibility = EditButton.Visibility = Visibility.Hidden;
