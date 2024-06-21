@@ -8,7 +8,7 @@
     <Grid Background="#F0EDCC">
         <StackPanel Background="#02343F" Margin="15">
 
-            <TextBlock Text="Бренд:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <TextBlock Text="Марка:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
             <ComboBox x:Name="BrandComboBox" Width="230" Margin="10,15,10,0"/>
 
             <TextBlock Text="Автомобиль:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
@@ -17,7 +17,7 @@
             <TextBlock Text="Сотрудник:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
             <ComboBox x:Name="EmployeeComboBox" Width="230" Margin="10,15,10,0"/>
 
-            <TextBlock Text="Покупатель:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
+            <TextBlock Text="Клиент:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>
             <ComboBox x:Name="CustomerComboBox" Width="230" Margin="10,15,10,0"/>
 
             <TextBlock Text="Продажа была сделано после:" FontSize="16px" Foreground="White" FontWeight="Bold" Margin="15,15,0,0"/>

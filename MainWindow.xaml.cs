@@ -20,13 +20,13 @@ namespace MDK._01._01_CourseProject
 
         private void OpenBrands_Click(object sender, RoutedEventArgs e)
         {
-            TableName.Content = "Таблица: Бренды";
+            TableName.Content = "Таблица: Марки";
             Frame.Navigate(new Views.Brands.Main(customer != null));
         }
 
         private void OpenCars_Click(object sender, RoutedEventArgs e)
         {
-            TableName.Content = "Таблица: Машины";
+            TableName.Content = "Таблица: Автомобили";
             Frame.Navigate(new Views.Cars.Main(customer != null));
         }
 

@@ -17,7 +17,7 @@
                     <DropShadowEffect Opacity="0.1"/>
                 </Grid.Effect>
 
-                <Label Content="Название бренда:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <Label Content="Название марки:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
                 <TextBox x:Name="BrandName" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0" IsEnabled="{Binding IsEnable}"/>
             </Grid>
 

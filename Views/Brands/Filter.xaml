@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.Brands"
         mc:Ignorable="d"
-        Title="Фильтр таблицы Бренды" MinHeight="380" MinWidth="300" MaxHeight="380" MaxWidth="300">
+        Title="Фильтр таблицы Марки" MinHeight="380" MinWidth="300" MaxHeight="380" MaxWidth="300">
     <Grid Background="#F0EDCC">
         <StackPanel Background="#02343F" Margin="15">
 

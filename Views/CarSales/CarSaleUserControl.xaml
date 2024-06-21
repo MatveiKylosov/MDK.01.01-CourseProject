@@ -37,7 +37,7 @@
                     <DropShadowEffect Opacity="0.1"/>
                 </Grid.Effect>
 
-                <Label Content="Машина:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
+                <Label Content="Автомобиль:" VerticalAlignment="Top" Margin="10, 0, 10, 0" Foreground="#02343F"/>
                 <ComboBox x:Name="CarComboBox" Text="ПивЗавод" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="25" Margin="10, 25, 10, 0"/>
             </Grid>
 
