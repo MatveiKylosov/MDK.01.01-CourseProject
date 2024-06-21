@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.Employees"
         mc:Ignorable="d"
+        Title="Фильтр"
         MinHeight="600" MinWidth="300" MaxHeight="600" MaxWidth="300">
     <Grid Background="#F0EDCC">
         <StackPanel Background="#02343F" Margin="15">

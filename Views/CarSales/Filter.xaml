@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDK._01._01_CourseProject.Views.CarSales"
-        mc:Ignorable="d" Title="Фильтр таблицы 'Продажи машин'" MinHeight="380" MinWidth="300" MaxHeight="630" MaxWidth="300">
+        mc:Ignorable="d" Title="Фильтр" MinHeight="380" MinWidth="300" MaxHeight="630" MaxWidth="300">
     <Grid Background="#F0EDCC">
         <StackPanel Background="#02343F" Margin="15">
 

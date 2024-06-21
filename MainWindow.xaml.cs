@@ -49,6 +49,12 @@ namespace MDK._01._01_CourseProject
         }
         private void Auth_Click(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrEmpty(Login.Text) || string.IsNullOrEmpty(Password.Password))
+            {
+                MessageBox.Show($"Ошибка при авторизации.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var employee = Repository.RepositoryEmployee.GetEmployees().FirstOrDefault(x => x.FullName == Login.Text && x.Password == Password.Password);
             var customer = Repository.RepositoryCustomer.GetCustomers().FirstOrDefault(x => x.FullName == Login.Text && x.Password == Password.Password);
 
